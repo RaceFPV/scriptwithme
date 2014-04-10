@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140210161533) do
   end
 
   create_table "lines", force: true do |t|
-    t.text     "content",      limit: 255
+    t.text     "content"
     t.string   "kind"
     t.integer  "character_id"
     t.integer  "scene_id"

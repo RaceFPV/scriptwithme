@@ -7,7 +7,7 @@
 	<div class="ibl" align="center">
     
      <p class="robofont" style="font-size:26px;font-weight:300;">Pick a character name</p>
-     <%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:120px; width:120px; margin-top:-45px; margin-left:-125px;', align: 'left' %> 
+     <!--<%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:120px; width:120px; margin-top:-45px; margin-left:-125px;', align: 'left' %> -->
     <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
     <div class="input-group" style="margin-top:5px;margin-bottom:-15px;max-width:270px;">
 		<% if @user.characters.last == nil%>
