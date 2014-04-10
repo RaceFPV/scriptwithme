@@ -1,6 +1,6 @@
 <h2 class="centered-text" style="margin-top:-30px;">
   <b>Write scripts and stories with anyone</b>
-  <h4 class="centered-text robotext" style="color:#3498db; margin-top:-5px; font-size:20px">Become the character!   <span style="">Instantly create stories and lives!</span>   <span style="">You write the scene!</h4>
+  <h4 class="centered-text robotext" style="color:#3498db; margin-top:-5px; font-size:20px">Invite friends or strangers to write scripts and stories with you in realtime</h4>
 
 <!-- form for new character name and scene start -->
 <div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 110px; margin-left: 40px;display:block;">
@@ -13,7 +13,7 @@
 		<% if @user.characters.last == nil%>
 			<%= f.text_field :character, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
 		<% else %>
-		    <%= f.text_field :character, value: @user.characters.last.nickname, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
+		    <%= f.text_field :character, value: @user.characters.last.nickname, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Billy', autofocus: true %>
 		<% end %>
         <span class="input-group-btn">
         	<%= button_tag(type: 'submit', class: "btn btn-default", style: "height:34px") do %>
