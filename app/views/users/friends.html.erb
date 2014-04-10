@@ -1,0 +1,39 @@
+<!-- user pages navbar if this is our own profile-->
+<ul class="nav nav-pills" style="margin-bottom: 25px;margin-top: -40px;">
+  <li><%= link_to "Home", home_path(@user_path(@user.name) %></li>
+  <li><%= link_to "Browse Live Scenes", live_index_path(@user.name) %></li>
+  <li class="active"><%= link_to "Friends", friends_user_path(@user.name) %></li>
+</ul>
+<!-- end navbar -->
+<row>
+	<div class="col-xs-6" style="margin: 0; padding: 0;">
+		<div class="panel panel-default">
+			<div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+  				<span style="float:left" class="glyphicon glyphicon-heart"></span>
+  				<h3 class="panel-title">Friends list</h3>
+			</div>
+			<div class="panel panel-body">
+				<div class="scenes centered-text">
+					Make some new friends!
+  				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6" style="margin: 0; padding: 0;">
+		<div class="panel panel-default">
+			<div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+  				<span style="float:left" class="glyphicon glyphicon-time"></span>
+  				<h3 class="panel-title">Friends activity</h3>
+			</div>
+			<div class="panel panel-body">
+				<div class="scenes centered-text">
+					No available activity
+  				</div>
+			</div>
+		</div>
+	</div>
+</row>
+
+<!-- form for new character name and scene start -->
+<!-- if the user is viewing their own profile, don't let them start a new scene with themselves -->
+<%= render partial: 'scenes/new_scene_profilepage' %>

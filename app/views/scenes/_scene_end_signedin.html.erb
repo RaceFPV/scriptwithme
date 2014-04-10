@@ -1,0 +1,57 @@
+<div class="modal fade in" id="endscene" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="title centered-text"> <span class ="glyphicon glyphicon-bullhorn"></span> .......and CUT! <br>
+        	<span style="font-size:14px;">
+        		<% if @partnerfull.name != nil %>
+        			Your scene with <%= link_to @partnerfull.name, user_path(@partnerfull.name) %> has ended
+              <br>
+              <% if @partnerfull.rating == nil or @partnerfull.rating.first.key?("#{@user.name}") == false %>
+            <div class="ratings" id="rate" style="display: inline;">
+            Please rate them as a scene partner
+            <%= link_to "", rating_path(@partnerfull.name, 1, {:ratedby => @user.name}), class: "glyphicon glyphicon-star", id: "one", style: "visible: inherit;", :remote => true %>
+        				<%= link_to "", rating_path(@partnerfull.name, 2, {:ratedby => @user.name}), class: "glyphicon glyphicon-star", id: "two", style: "visible: inherit;", :remote => true %>
+        				<%= link_to "", rating_path(@partnerfull.name, 3, {:ratedby => @user.name}), class: "glyphicon glyphicon-star", id: "three", style: "visible: inherit;", :remote => true %>
+        				<%= link_to "", rating_path(@partnerfull.name, 4, {:ratedby => @user.name}), class: "glyphicon glyphicon-star", id: "four", style: "visible: inherit;", :remote => true %>
+        				<%= link_to "", rating_path(@partnerfull.name, 5, {:ratedby => @user.name}), class: "glyphicon glyphicon-star", id: "five", style: "visible: inherit;", :remote => true %>
+            </div>
+            <div id="rated" style="display: none;">
+            	<p>Thanks for rating <%= @partnerfull.name %>!</p>
+            </div>
+              <% else %>
+        		<% end %>
+        		<% else %>
+        			Someone has ended the scene.
+        		<% end %>
+        	</span></h3>
+      </div>
+    <%= form_for :savescene, url: savescene_path(@scene), class: 'clearfix' do |f| %>
+    <div class="modal-body" style="padding: 10px; background-color:#ececec; margin-bottom: -16;" align="center">
+    	<div class="save-body save-content">
+       	 <h4> Do you want to save this script?
+         <br>
+       	 <%= f.text_field :scriptname, class: "script-name form-control centered-text", style: "width:300px",placeholder: "Give your script a name." %>
+         <br>
+      	 
+      </div>
+    </div>
+  <div class="modal-footer">
+    <div class="confirm-buttons confirm-content">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Continue without saving</button>
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <% end %>
+    </div>
+   </div>
+</div>
+</div>
+</div>
+
+<script>
+$("#rate").on('click', function() {
+  document.getElementById('rate').style.display= 'none';
+  document.getElementById('rated').style.display = 'inline'; 
+});
+</script>
+    

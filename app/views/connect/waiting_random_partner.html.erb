@@ -1,0 +1,64 @@
+<!-- let the user know whats going on and give them the connect to a friend option -->
+<div style="margin-top:70px;" align="center" >
+</div>
+<div class="spinner"></div>
+<h4 class="introduce centered-text" style="color:#0074d9; font-size:20">Searching for scene partner</h4>
+
+<br>
+<br>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="centered-text robofont" style="weight:300;">
+        If you would rather invite a friend:  
+        <%= link_to "click here", start_new_scene_path, class: "btn btn-default start-new-scene", method: "post" %>
+    </div>
+
+  </div>
+</div>
+
+<% nocache = rand(5..30) %>
+<!-- script to check if there's someone else to connect to -->
+<script>
+	  //set some starting variables
+  var count = 0;
+  var introduceText = $(".introduce").text();
+  var dot = "";
+var connectpath = "<%= random_connect_path %>"
+  
+setInterval(function() {
+    //if the count gets higher than 3, try to connect to a random partner
+    if (count > 2) {
+      $.get(connectpath, function(data) {
+        if (count > 2) {
+          if (data.scene_url) {
+            location.href = data.scene_url;
+          }
+        }
+      });
+    }
+    //increment the count by 1
+    count += 1;
+    //add a new . to the 'connecting to a random partner' div
+    dot += ".";
+    $(".introduce").text(introduceText + dot);
+    //if the count is 0 or 3, remove all displayed dots
+    if (count % 3 == 0) {
+      dot = "";
+    }
+    //repeat every 1000ms or 1 second
+  }, 1000);
+
+</script>
+
+<script>
+  var giveuppath = "<%= giveup_path %>"
+  // Make sure that user is dequeued when unconnected user leaves this page (when user closes the window without joining)
+  window.onunload = window.onbeforeunload = (function(){
+      $.ajax({
+        url:    giveuppath,
+        type:   'get',
+        async:  false
+  })
+});
+</script>

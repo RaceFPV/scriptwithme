@@ -1,0 +1,8 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/waiting" %>
+<!-- publish the submitted form to the private_pub server -->
+<% publish_to @scenesubscribe do %>
+<!-- append the new submitted form to the scene using ajax -->
+	document.getElementById('waitingpartner').style.display= 'none';
+	document.getElementById('waitingpartnername').style.display= 'inline';
+<% end %>

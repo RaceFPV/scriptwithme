@@ -1,0 +1,24 @@
+<!-- javascript for scene start and scene end saving -->
+<script type="text/javascript">
+	$(document).ready(function(){
+	//scroll to the bottom of the page
+	$("body").animate({scrollTop: $("#leavebutton").position().top},1000);
+	 });
+</script>
+<!-- subscribe to the scene channel via private_pub/faye -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show" %>
+<%= @subscribedtoscene = subscribe_to @scenesubscribe %>
+
+<!-- scene has ended alert to appear after user ends scene -->
+<!-- No need to show scene has closed (It's confusing) -->
+
+<!-- Main show page content   -- user generated lines -->
+<%= render 'scenes/scene_lines' %>
+
+<!-- create new scene form for when scene ends -->
+<div style="padding-bottom: 0px; padding-top: -50px; margin-top: 0px; margin-bottom: 0px;display: inline;" id="newscene">
+</div>
+
+<div align="right">
+  <%= link_to "Leave script", root_path, class: "btn btn-default" %>
+</div>

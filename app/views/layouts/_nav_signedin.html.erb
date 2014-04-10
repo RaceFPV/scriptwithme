@@ -1,0 +1,63 @@
+<!--<div class="dropdown" style="width: 30px;margin-top: 14px;float: left;margin-left: 15px;">
+	<a href="#" class="dropdown-toggle navdropdown" data-toggle="dropdown" data-target="#" style="margin-top: 10px">
+		<span class="glyphicon glyphicon-envelope"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<% @mymessages = current_user.messages.all rescue nil%>
+		<% if @mymessages != nil %>
+ 	   		<% @mymessages.each do |x| %>
+ 	   			<li><%= link_to x.title x, role: 'menuitem' %></li>
+ 	   		<% end %>
+			<li class="divider"></li>
+			<li><a role="menuitem" tabindex="-1" href="#">All messages</a></li>
+ 	   <% else %>
+ 	   		<li align="center">No messages</li>
+ 	   <% end %>
+	</ul>
+</div>
+
+<div class="dropdown" style="width: 30px;margin-top: 14px;float: left;">
+	<a href="#" class="dropdown-toggle navdropdown" data-toggle="dropdown" data-target="#" style="margin-top: 10px">
+		<span class="glyphicon glyphicon-user"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<% if User.allfriendsonline?(current_user.id) != nil %>
+			<% User.allfriendsonline?(current_user.id).each do |x| %>
+				<li><%= link_to x.name, x, role: 'menuitem' %></li>
+			<% end %>
+		<% else %>
+ 	   		<li align="center">No friends found</li>
+ 	    <% end %>
+ 	   <li class="divider"></li>
+ 	   <li><%= link_to "Add a friend", addfriend_path(current_user.id), role: 'menuitem' %></li>
+	</ul>
+</div>
+-->
+<div class="dropdown" style="float: left;margin-top: 8px;margin-left: 5px;">
+<a class="dropdown-toggle navdropdown signin-link" href="#" data-toggle="dropdown" style="margin-top: 0px; float: right;" data-target="#">
+	<%= current_user.name %>
+	<span class="caret"></span>
+</a>
+<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+	<li class="save-item">
+		<%= link_to "Saved Scripts", saved_user_path(current_user.name) %>
+	</li>
+	<li class="save-item">
+		<%= link_to "Profile", user_profile_path(current_user.name) %>
+	</li>
+	<% if current_user != nil and current_user.provider == "identity" %>
+		<li class="save-item">
+			<%= link_to "Settings", edit_user_path(current_user.name) %>
+		</li>
+	<% end %>
+	<li class="signout-item">
+		<%= link_to "Sign out", signout_path, method: "delete" %>
+	</li>
+	<% if current_user != nil and current_user.admin != nil %>
+		<li class="divider"></li>
+		<li class="save-item">
+			<%= link_to "Admin", admin_user_path(current_user.name),  style: "color: #cc0000;" %>
+		</li>
+	<% end %>
+</ul>
+</div>

@@ -1,0 +1,66 @@
+<!-- tell private_pub to listen on the waiting page -->
+<%= subscribe_to "/scenes/#{@scene.id}/waiting" %>
+
+<!-- old subscribe code, to be removed -->
+<script type="text/javascript">
+  $(function() {
+    PrivatePub.subscribe("/scenes/#{@scene.id}/waiting", function(data) {
+      if ( data.action === 'refresh' ) location.reload();
+    });
+  });
+</script>
+
+<!-- start of main waiting page -->
+<h1> Waiting for your co-writer </h1>
+
+<p> Invite him / her to join you at this url: </p>
+
+<!-- allow user to invite a friend by providing a join url-->
+<div class="well well-small">
+  <%= link_to @join_url, @scene %>
+</div>
+<!-- end main waiting page -->
+
+
+<!-- partner is joining alert -->
+<div class="spinner"></div>
+<div align="center" style="width: 100%">
+<h4 class="introduce centered-text" id="waitingpartner" style="color:#0074d9; font-size:20; display: true">Waiting for partner to connect</h4>
+<h4 class="introduce centered-text" id="waitingpartnername" style="color:#0074d9; font-size:20; display: none">Waiting for partner to name their character</h4>
+</div>
+
+<!-- script to check if there's someone else to connect to -->
+<script type="text/javascript">
+  //set some starting variables
+  var count = 0;
+  var dot = "";
+  var giveup = false;
+  
+  //if the user decides to start a scene with a friend, dequeue them
+  $(".start-new-scene").click(function() {
+    giveup = false;
+  });
+  setInterval(function() {
+    //if the count gets higher than 3, try to connect to a random partner
+    if (count > 3) {
+      $.get("#{waiting_path}", function(data) {
+        if (count > 3) {
+          if (data.scene_url) {
+            giveup = false;
+            location.href = data.scene_url;
+          }
+        }
+      });
+    }
+    //increment the count by 1
+    count += 1;
+    //add a new . to the 'connecting to a random partner' div
+    dot += ".";
+    //if the count is 0 or 3, remove all displayed dots
+    if (count % 3 == 0) {
+      dot = "";
+    }
+    //repeat every 1000ms or 1 second
+  }, 1000);
+
+</script>

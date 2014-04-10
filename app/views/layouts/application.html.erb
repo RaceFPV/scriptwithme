@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : 'Scriptwith.me' %></title>
+    <%= stylesheet_link_tag "application", media: "all",
+                      "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tag %>
+    <%= render 'layouts/shim' %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= content_for :header %>  
+  </head>
+
+  <!-- subscribe to the alerts channel via private_pub/faye -->
+<% @alertsubscribe = "/alerts" %>
+<% if @subscribedtoalerts == nil %>
+	<%= @subscribedtoalerts = subscribe_to @alertsubscribe %>
+<% end %>
+
+  <body>
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+      <div class="container">
+         <div class="content post">
+          <div class="paperclip"></div>
+          <row>
+          	<%= render 'layouts/messages' %>
+            <%= yield %>
+          </row>
+          </div>
+      </div>
+      <br>
+          <!-- Script for Doorbell.io -->
+          <script type="text/javascript">
+        window.doorbellOptions = {
+            appKey: ''
+        };
+        (function(d, t) {
+            var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://doorbell.io/button/113';(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g);
+        }(document, 'script'));
+    </script>
+    <%= render partial: 'layouts/help' %>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!-- TODO: Make viewing a users favorite scripts less hack'd -->
+
+<div class="scenes centered-text robofont" style="margin-top: 13px;margin-bottom:25px;">
+	<% if @userscenes.count == 0 %>
+		<% if @user == current_user %>
+			<p>No saved scripts</p>
+		<% else %>
+			<p><%= @user.name %> doesn't have any saved scripts</p>
+		<% end %>
+	<% end %>
+	<div class="btn-group-vertical" style="max-height: 350px; width: 65%; overflow-y: hidden;" id="prettyscroll">
+		<% @userscenes.each do |scene| %>
+			<% scene.users.first.each_pair do |x, y| %>
+				<% if x == @user.id %>
+					<% if y == nil or y == "" %>
+						<% @scene_url  = savedscene_url(scene) %>
+						<% @tweet = "https://twitter.com/share?url=" + @scene_url %>
+						<% @facebook = @scene_url %>
+						<div style="display: inline-block; width: 100%;">
+							<% if @user == current_user %>
+								<%= link_to "", unsavescene_path(scene.id), style: 'float: right; margin-top:8px;font-size: 15px;padding-right: 25px;', class: 'glyphicon glyphicon-remove', :method => :delete, :confirm => "Are you sure?"%>
+							<% end %>
+							<%= link_to "Untitled", savedscene_path(scene.id), class: 'btn btn-large btn-default btn-block', style: 'padding-left: 5%;'%>
+						</div>
+					<% else %>
+						<% @scene_url  = savedscene_url(scene) %>
+						<% @tweet = "https://twitter.com/share?url=" + @scene_url %>
+						<% @facebook = "https://www.facebook.com/sharer/sharer.php?u=" + @scene_url %>
+                		<div style="display: inline-block; width: 100%;">
+                  			<% if @user == current_user %>
+                  				<%= link_to "", unsavescene_path(scene.id), style: 'float: right; margin-top:8px;font-size: 15px;padding-right: 25px;', class: 'glyphicon glyphicon-remove', :method => :delete, :confirm => "Are you sure?" %>
+                			<% end %>
+                			<!--<div style="float: right;margin-top:6px;margin-right: 5px;"><%= link_to "Tweet", @tweet,  class: "twitter-share-button", target: "_blank", :'data-count' => "none"%></div>-->
+                			<!--<div style="float: left;margin-left: 5px;margin-top: 9px;"><%= link_to "", @facebook, class: "fb-share-button", target: "_blank"%></div>-->
+                    		<%= link_to y, savedscene_path(scene.id), class: 'btn btn-large btn-default btn-block', style: 'padding-left: 5%;'%>
+                  		</div>
+					<% end %>
+				<% end %>
+			<% end %>
+			<% if scene.users.count == 2 %>
+			<% scene.users.last.each_pair do |x, y| %>
+				<% if x == @user.id %>
+					<% if y == nil or y == "" %>
+						<% @scene_url  = savedscene_url(scene) %>
+						<% @tweet = "https://twitter.com/share?url=" + @scene_url %>
+						<% @facebook = @scene_url %>
+						<div style="display: inline-block; width: 100%;">
+							<% if @user == current_user %>
+								<%= link_to "", unsavescene_path(scene.id), style: 'float: right; margin-top:8px;font-size: 15px;padding-right: 25px;', class: 'glyphicon glyphicon-remove', :method => :delete, :confirm => "Are you sure?"%>
+							<% end %>
+							<%= link_to "Untitled", savedscene_path(scene.id), class: 'btn btn-large btn-default btn-block', style: 'padding-left: 5%;'%>
+						</div>
+					<% else %>
+						<% @scene_url  = savedscene_url(scene) %>
+						<% @tweet = "https://twitter.com/share?url=" + @scene_url %>
+						<% @facebook = "https://www.facebook.com/sharer/sharer.php?u=" + @scene_url %>
+                		<div style="display: inline-block; width: 100%;">
+                  			<% if @user == current_user %>
+                  				<%= link_to "", unsavescene_path(scene.id), style: 'float: right; margin-top:8px;font-size: 15px;padding-right: 25px;', class: 'glyphicon glyphicon-remove', :method => :delete, :confirm => "Are you sure?" %>
+                			<% end %>
+                			<!--<div style="float: right;margin-top:6px;margin-right: 5px;"><%= link_to "Tweet", @tweet,  class: "twitter-share-button", target: "_blank", :'data-count' => "none"%></div>-->
+                			<!--<div style="float: left;margin-left: 5px;margin-top: 9px;"><%= link_to "", @facebook, class: "fb-share-button", target: "_blank"%></div>-->
+                    		<%= link_to y, savedscene_path(scene.id), class: 'btn btn-large btn-default btn-block', style: 'padding-left: 5%;'%>
+                  		</div>
+					<% end %>
+				<% end %>
+			<% end %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

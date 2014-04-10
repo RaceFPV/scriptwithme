@@ -1,0 +1,27 @@
+<ul class="nav nav-pills " style="margin-bottom: 25px;margin-top: -40px;">
+  <li><%= link_to "Home", home_path(@user.name) %></li>
+    <li class="active"><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+    <li><%= link_to "Profile", user_profile_path(@user.name) %></li>
+    <% if User.starter?(@user.id) == true %>
+      <li><%= link_to "Scene Starters", starters_path(@user.name) %></li>
+    <% end %>
+    <% if @user.provider == "identity" %>
+    	<li><%= link_to "Settings", edit_user_path(@user.name) %></li>
+    <% end %>
+    <% if @user.admin == true %>
+      <li><%= link_to "Admin", admin_user_path(@user.name) %></li>
+    <% end %>
+</ul>
+<!-- end navbar -->
+
+<div class="col-md-12" style="padding-right:15px;">
+  <div class="panel panel-default robofont">
+    <div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+      <span style="float:left;" class="glyphicon glyphicon-floppy-disk userpanel-title"></span>
+      <h1 class="panel-title userpanel-title">Saved Scripts </h1>
+    </div>
+    <div class="panel panel-body" style="height:300px">
+      <%= render partial: '/users/saved_scripts' %>
+    </div>
+  </div>
+</div>

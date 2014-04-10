@@ -1,0 +1,14 @@
+<!-- form for new character name and scene start -->
+<div class="panel input-panel-profilepage form-wrapper centered-text"  id="new_scene">
+  <div class="ibl">
+     <strong><P style="font-size:16px; margin-top:-0px;">Start New scene:</P></strong>
+    <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
+      <div class="input-group" style="align:center; margin-top:5px;margin-bottom:-15px;width: 300px; margin-left:35px;">
+        <%= f.text_field :character, class: "form-control centered-text", style: "font-size:16px;", placeholder: "Character name?" , autofocus: true %>
+        <span class="input-group-btn">
+          <%= f.submit 'Go', class: 'btn btn-default', style: 'height: 34px;' %>
+      </span>
+      </div>
+    <% end %>
+  </div>
+</div>

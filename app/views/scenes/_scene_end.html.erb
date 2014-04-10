@@ -1,0 +1,110 @@
+<!-- start of modal that overlays on top of the ended scene -->
+<div class="modal fade in" id="endscene" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="title centered-text"> <span class ="glyphicon glyphicon-bullhorn"></span> .......and CUT! <br>
+        	<span style="font-size:14px;">
+        		<% if @partnerfull.name != nil and @partnerfull.name.include?("guest_") == false %>
+        			Your scene with <%= link_to @partnerfull.name, @partnerfull %> has ended
+        			<br>
+        			
+        		<% else %>
+        			Someone has ended the scene.
+        		<% end %>
+        	</span></h3>
+      </div>
+    <!-- start of form for user sign up -->
+    <%= form_tag "/auth/identity/register" do %>
+    <!-- hidden field to be sent via ajax, allows saving the scene title to the scene -->
+	<%= hidden_field_tag(:scene_id, params[:id]) %>
+    <div class="modal-body" style="padding: 10px; background-color:#ececec; margin-bottom: -16;" align="center">
+    	<div class="save-body save-content">
+      		<h4> Create an account to save your script! <small><em>(more features to come...)</em></small></h4>
+      		<div align="center">
+      			<h4><%= text_field_tag :scriptname, nil, class: "script-name form-control centered-text", style: "width: 400px;margin-bottom:25px;", placeholder: 'Give your script a name.', autofocus: true %></H4>
+	  		</div>
+    	</div>
+		<div class="panel-group" id="accordion" align="center">
+  			<div class="panel" style="background-color:#ececec; width: 65%;">
+      			<div class="panel-body" align="center" style="padding-bottom: 7px;" id="signup">
+        			<h4 class="panel-title" id="signup">
+      					<div id="user-widget" align="center" style="margin-bottom:5px;" id="signup">
+    						<%= link_to image_tag("signupfacebook.png", style: 'margin-left:-1px; width: 300px;'), "/auth/facebook", id: "sign_in" %>
+      					</div>
+      				</h4>
+      				<h4 class="panel-title" id="signup">
+      					<div id="user-widget" align="center" id="signup">
+    						<%= link_to image_tag("signuptwitter.png", style: 'margin-left:-1px; width: 300px;'), "/auth/twitter", id: "sign_in" %>
+      					</div>
+      				</h4>
+  				</div>
+  				<div class="panel-group" id="accordion" align="center">
+  					<div class="panel panel-default" style="width: 294px;margin-bottom:20px; border-radius:10px;">
+    					<div class="panel-heading" style="background-color: #fff;">
+    						<h4 class="panel-title">
+        						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color: #2184c2;width: 100%; height: 100%;">
+          							<%= image_tag "clapper3.png", :alt => "logo", style: 'height:32px; width:34px; float:left; margin-top: -6px;' %>
+          							<h4 style="font-size:18px;"><span style="float:left; font-size:21px; margin-left: 6px;"> |</span>Sign up with WTS</h4>
+        						</a>
+        					</h4>
+    					</div>
+    					<div id="collapseOne" class="panel-collapse collapse">
+      						<div class="panel-body">
+      	    					<div style="max-width: 250px">
+      								<span class="label label-default"> Username </span>
+									<%= text_field_tag :name, @identity.try(:name), class: "form-control darkbox" %>
+    							</div>
+    							<div style="margin-top:15px;max-width: 250px;">
+      								<span class="label label-default"> Email </span>
+      								<%= text_field_tag :email, @identity.try(:email), class: "form-control darkbox" %>
+    							</div>
+    							<div style="margin-top:15px;max-width: 250px;">
+      								<span class="label label-default"> Password </span>
+        							<%= password_field_tag :password, nil, class: "form-control darkbox"  %>
+    							</div>
+    							<div style="margin-top:15px;max-width: 250px;">
+      								<span class="label label-default"> Confirm Password </span>    
+        								<%= password_field_tag :password_confirmation, nil, class: "form-control darkbox"  %>
+    							</div>
+    						</div>
+    					</div>
+  					</div>
+  				</div>
+  			</div>
+		</div>
+	</div>  
+	<div class="modal-footer">
+    	<div class="confirm-buttons confirm-content">
+      		<button type="button" class="btn btn-default" data-dismiss="modal">Continue without saving</button>
+      		<%= submit_tag "Save", class: 'btn btn-primary'%>
+    	</div>
+	</div>
+   	<% end %>
+   	<!-- end of user signup form -->
+	</div>
+  </div>
+</div>
+<!-- end of modal -->
+
+<!-- script that saves the scene title if the user decides to sign up -->
+<script>
+  //set the path to send the post ajax request to
+  var savescenetitle = "<%= save_scene_title_path(params[:id]) %>";
+  //when the user clicks any div that contains the signup id
+  $(document).ready(function() {
+  	$("#signup").on('click', function() {
+  		//set some variables containing the script title and scene id from their fields
+		var namevalue = document.getElementById("scriptname").value;
+		var sceneidvalue = document.getElementById("scene_id").value;
+		//send the post request via ajax and include the script title and scene id
+		$.ajax({
+  			type    : 'POST',
+  			url     : savescenetitle, 
+  			data    : { scriptname : namevalue },
+		});
+	});
+  });
+</script>
+    

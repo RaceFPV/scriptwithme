@@ -1,0 +1,21 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show" %>
+<% @showline = "/scenes/messages/showline" %>
+<% @linekind = "/scenes/messages/line_dropdown" %>
+
+<!-- publish the submitted form to the private_pub server -->
+<% publish_to @scenesubscribe do %>
+<!-- remove the 'write your first line' phrase if it exists' and other notices -->
+$('.emptyscript').remove();
+$('.addednotice').remove();
+$('.addednotice').remove();
+<!-- append the new submitted form to the scene using ajax -->
+$("#scene_container").append("<%= j render(@showline) %>");
+<!-- scroll to the bottom of the page -->
+$("body").animate({scrollTop: $("#namechange").position().top},100);
+<% end %>
+<!-- Clear line input -->
+$("#say-your-line")[0].reset();
+$('.selectpicker').selectpicker('render');
+<!-- focus on the say line text box -->
+$('#input-line').focus();

@@ -1,0 +1,30 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{params[:id]}/show" %>
+<% @newscene = "/scenes/messages/new_scene" %>
+<% @newscenepartner = "/scenes/messages/new_scene_partner" %>
+<% @scenesubscribepartner = "/scenes/#{params[:id]}/show/#{@me}" %>
+
+<!-- publish the submitted form to the private_pub server -->
+<% publish_to @scenesubscribe do %>
+<% puts "scene ended" %>
+<!-- append the new submitted form to the scene using ajax -->
+	$('#endscene').modal('show');
+	document.getElementById('dropline').style.display= 'none';
+	document.getElementById('endbuttons').style.display= 'none';
+	document.getElementById('leavebutton').style.display= 'inherit';
+	document.getElementById('sceneendnotice').style.display= 'inline-block';
+	$("body").animate({scrollTop: $("#leavebutton").position().top},1000);
+<% end %>
+
+$('#newscene').remove();
+$("#newscene1").append("<%= j render(@newscene) %>");
+
+<% publish_to @scenesubscribepartner do %>
+	$('#newscene').remove();
+	$("#newscene1").append("<%= j render(@newscenepartner) %>");
+<% end %>
+
+<% publish_to @scenesubscribe do %>
+	document.getElementById('scenelive').style.display= 'none';
+	document.getElementById('sceneliveend').style.display= 'inline-block';
+<% end %>

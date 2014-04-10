@@ -1,0 +1,156 @@
+<!-- scene has ended alert to appear after user ends scene -->
+<div class="col-md-12" id="sceneendnotice" style="display: none;margin-top: -70px;margin-bottom:10px;">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="margin-top:9px;margin-right:10px;">&times;</button>
+	<div class="alert alert-danger fade in centered-text" align="center" style="width: 100%;">
+		Scene has ended
+	</div>
+</div>
+
+<!-- scene is live alert -->
+<header class="navbar-fixed-top" style="width: 100%;margin-top:50px;" align="center">
+	<% if @scene.state?(:operating) or @scene.state?(:waiting)%>
+		<div id="viewercount">
+			<% if @viewercount %>
+				<span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> live viewers</span>
+			<% else %>
+				<span class="badge" style="float: right;" id="viewercounter">0 live viewers</span>
+			<% end %>
+		</div>
+		<% end %>
+</header>
+
+<!-- Partner disconnected alert -->
+<header id="partnerdisconnect" class="navbar-fixed-top" style="display: none;width: 50%;margin-left:25%;margin-top:50px;" align="center">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="margin-top:9px;margin-right:10px;">&times;</button>
+		<div class="alert alert-danger fade in centered-text" align="center" style="width: 100%;">
+			Lost connection to partner...
+		</div>
+</header>
+<!-- Partner left alert -->
+<header id="partnerleft" class="navbar-fixed-top" style="display: none;width: 50%;margin-left:25%;margin-top:50px;" align="center">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="margin-top:9px;margin-right:10px;">&times;</button>
+		<div class="alert alert-danger fade in centered-text" align="center" style="width: 100%;">
+			Partner has left the scene...
+		</div>
+</header>
+
+
+<!-- scene has ended modal that appears after user ends scene -->
+<!-- check if the user is signed in so we know which modal to show them -->
+<% if signed_in? %>
+	<%= render 'scenes/scene_end_signedin' %>
+<% else %>
+	<%= render 'scenes/scene_end' %>
+<% end %>
+
+<!-- for the OOC sidechat popout -->
+<%= render 'sidechats/sidechat' %>
+
+<!-- subscribe to the scene channel via private_pub/faye -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show" %>
+<%= @subscribedtoscene = subscribe_to @scenesubscribe %>
+<!-- subscribe to the users partner via private_pub/faye -->
+<% @partnersubscribe = "/scenes/#{@scene.id}/show/#{@partner}" %>
+<%= @subscribedtopartner = subscribe_to @partnersubscribe %>
+
+<!-- Main show page content -- show all currently posted lines -->
+<%= render 'scenes/scene_lines' %>
+	
+<!-- form to add a new line, only shown when scene is active -->
+<div align="center" style="padding-bottom: 0px; padding-top: 0px; margin-top: 0px; margin-bottom: 0px;display: inherit;" id="dropline">
+<div id="droplinerefresh"></div>
+  <%= render 'scenes/drop_a_line' %>
+</div>
+
+<!-- form for starting a new scene, only shown when scene has ended -->
+<div id="newscene1">
+	<div style="padding-bottom: 0px; padding-top: -50px; margin-top: 0px; margin-bottom: 0px;" id="newscene">
+	</div>
+</div>
+
+<!-- Button to end the scene -->
+<div id="endbuttons" style="display: inherit;margin-top:-20px;margin-left: 85%;">
+<button class="btn btn-default" id="endareyousure" style="display: inherit">
+  <strong>End Scene</strong> <%= image_tag "clapper.png", :alt => "logo", style: 'height:24px; width:24px;' %>
+</button>
+<button class="btn btn-primary" id="endscene1" style="display: none">
+  You Sure?  <%= image_tag "clapper.png", :alt => "logo", style: 'height:24px; width:24px;' %>
+</button>
+</div>
+<!-- end button to end scene -->
+
+<!-- button to let user leave script, only shown when scene has ended -->
+<div align="right" id="leavebutton" style="display: none;margin-top:-20px;margin-left: 85%;">
+  <%= link_to "Leave script", root_path, class: "btn btn-default" %>
+</div>
+
+<!-- script to trigger scene has ended buttons -->
+<script type="text/javascript">
+  var endscene = "<%= endscene_path(@scene) %>";
+  //add an 'are you sure' prompt when user tries to end scene
+  $("#endareyousure").on('click', function() {
+  document.getElementById('endareyousure').style.display= 'none';
+  document.getElementById('endscene1').style.display = 'inherit'; 
+  });
+  //if user clicks that they are sure, end the scene
+$("#endscene1").on('click', function() {
+//send a notice to the other user that the scene has ended and display the _scene_end modal
+//that prompts the user to save or sign up
+  $.ajax({
+            url: endscene,
+            type: "get",
+          });
+});
+</script>
+
+<!-- script for active polling to make sure partner is present -->
+<script>
+// set the path variables
+var endscenepath = "<%= endscene_path(@scene) %>";
+var atscenepath = "<%= atscene_path(@scene) %>";
+var left = false;
+var count = 0;
+ 			$.ajax({
+        			url:    atscenepath,
+        			type:   'get',
+        			async:  true
+     			 });
+     			 
+// every 1 second do the following:
+setInterval(function() {
+			//try to reconnect
+		      			$.ajax({
+        			url:    atscenepath,
+        			type:   'get',
+        			async:  true
+     			 });
+	//if the count gets higher than 6, send an AJAX request to end the scene
+	if (left == true) {
+  			count = count + 1;
+  			}
+  	if (left == false) {
+  		count = 0;
+  	}
+			if (count > 8) {
+      			$.ajax({
+        			url:    endscenepath,
+        			type:   'get',
+        			async:  true
+     			 });
+     			}
+  }, 1000);
+  
+</script>
+<!-- script for when the user leaves this window -->
+<!-- if user leaves this window, send a faye message to the partner increasing their count by 1 -->
+<script>
+	var leftscenepath = "<%= leftscene_path(@scene) %>";
+	  //before we leave the window change the count
+    window.onunload = window.onbeforeunload = (function(){
+      $.ajax({
+        url:    leftscenepath,
+        type:   'get',
+        async:  true
+  		})
+	});
+</script>

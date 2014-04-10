@@ -1,0 +1,177 @@
+<!-- user pages navbar if this is our own profile-->
+<ul class="nav nav-pills" style="margin-bottom: 25px;margin-top: -40px;">
+  <li><%= link_to "Home", home_path(@user.name) %></li>
+    <li><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+    <li><%= link_to "Profile", user_profile_path(@user.name) %></li>
+    <% if User.starter?(@user.id) == true %>
+      <li><%= link_to "Scene Starters", starters_path(@user.name) %></li>
+    <% end %>
+    <% if @user.provider == "identity" %>
+      <li><%= link_to "Settings", edit_user_path(@user.name) %></li>
+    <% end %>
+    <li class="active"><%= link_to "Admin", admin_user_path(@user.name) %></li>
+</ul>
+<!-- end navbar --> 
+
+
+<!-- for sending alerts -->
+<div style="max-width: 500px;margin-left:15%;" align="center">
+<%= form_for :alert, url: sendalert_path, remote: true do |f| %>
+	<%= f.text_field :message, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'System alert message' %>
+<br>
+<%= f.submit "Send out", class: "btn btn-primary btn-block", data: {confirm: "Are you sure?"} %>
+<% end %>
+</div>
+<!-- end alerts form -->
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Users
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+      	      		<button type="button" class="btn btn-default" data-container="body" data-toggle="popover-bottom" data-placement="bottom" data-content='
+      		<div style="min-width: 400px;min-height:200px;">
+      		<%= form_tag "/auth/identity/register" do %>
+      			<%= text_field_tag :name, nil, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Name', autofocus: true %>
+				<%= text_field_tag :email, nil, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Email' %>
+				<%= password_field_tag :password, nil, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Password' %>
+				<%= password_field_tag :password_confirmation, nil, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Confirm Password' %>
+				<br>
+				<%= submit_tag "Create user", class: 'btn btn-primary btn-block' %>
+      		<% end %>
+      		</div>
+      		'>
+  				Create a user
+			</button>
+        
+<table class="table table-striped table-bordered" id="datatable" style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>Admin set?</th>
+      <th>Make admin</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @users.each do |x| %>
+  <% if x.name != nil and x.name.include?("guest_") == false %>
+    <tr>
+      <td>
+    	  <%= link_to x.id, x %>
+      </td>
+      <td>
+    	  <%= x.name %>
+      </td>
+      <td>
+    	  <% if x.admin == nil or x.admin == false %>
+          No
+        <% else %>
+          <%= x.admin %> 
+        <% end %>
+      </td>
+      <td>
+        <% if x.admin == nil or x.admin == false %>
+    	    <%= link_to "Yes", adminify_path(@user.id, x.id), :method => :get, data: {confirm: "Are you sure?"} %>
+        <% elsif x.name == "Admin" %>
+          N/A
+        <% else %>
+    	    <%= link_to "No", noadmin_path(@user.id, x.id), :method => :get, data: {confirm: "Are you sure?"} %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Delete", delete_user_path(@user, x), :method => :get, data: {confirm: "Are you sure?"}  %>
+   	  </td>
+    </tr>
+  <% end %>
+  <% end %>
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Scenes
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table table-striped table-bordered" id="datatable1" style="margin-top: 10px;">
+          <thead>
+            <tr>
+              <th>Scene ID</th>
+              <th>Saved</th>
+              <th>Scene State</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @scenes.each do |x| %>
+            <tr>
+              <td><%= link_to x.id, x %></td>
+              <td><% if x.users == nil %> No <% else %> Yes <% end %></td>
+              <td><%= x.state %></td>
+              <td><%= link_to "Delete", delete_scene_path(@user, x), :method => :get, data: {confirm: "Are you sure?"} %></td>
+           </tr>
+        <% end %>
+          </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Starters
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      		<button type="button" class="btn btn-default" data-container="body" data-toggle="popover-bottom" data-placement="bottom" data-content='
+      		<div style="min-width: 400px;min-height:200px;">
+      		<%= form_for :starter, url: add_starter_path do |f| %>
+      			<%= f.text_field :title, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Title', autofocus: true %>
+				<%= f.text_area :content, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'Content' %>
+				<br>
+				<%= f.submit "Add", class: "btn btn-primary btn-block" %>
+      		<% end %>
+      		</div>
+      		'>
+  				Add new starter
+			</button>
+<table class="table table-striped table-bordered" id="datatable2" style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>Starter title</th>
+      <th>Starter Content</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      	<% @starters.each do |x| %>
+      	<tr>
+          <td><%= x.title %></td>
+          <td><%= x.content%></td>
+          <td><%= link_to "Delete", delete_starter_path(@user.id, x), :method => :get, data: {confirm: "Are you sure?"}  %></td>
+        </tr>
+        <% end %>
+   </tbody>
+</table>
+    	</div>
+    </div>
+  </div>
+</div>

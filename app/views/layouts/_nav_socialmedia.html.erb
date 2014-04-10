@@ -1,0 +1,35 @@
+
+<!-- for facebook like button -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- end facebook like button -->
+
+    <!-- for user online count -->
+    <% @online = User.online? %>
+    <% if @online > 1 %>
+      <p style="float: right"><%= User.online? %> writers online</p>
+    <% end %>
+
+   
+    <!-- facebook like button -->
+   <div class="fb-like" data-href="http://www.facebook.com/scriptwithme/" data-layout="button_count" data-action="like" data-show-faces="false" style="margin-right: 1%;margin-top: 15px;display: inline-block;float: right;" data-share="false"></div>
+ 
+  <!-- twitter share button -->
+	<div style="margin-top: 15px;margin-right: -20px;display: inline-block;float: right;">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="Scriptwith.me/start" data-counturl="www.Scriptwith.me/start" data-text="Check out Scriptwith.me!" data-via="Scriptwithmeapp" data-hashtags="writetogether" data-lang="en">Tweet</a></div>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+     <!-- reddit page button -->
+    <div style="margin-top: 13px;margin-right: 13px;display: inline-block;float: right;">
+    <a href="http://www.reddit.com/r/scriptwithme" target="_blank"> <%= image_tag "reddit2.png", :alt => "Reddit", style: 'height:25px; width:25px;' %></a></div>
+
+	
+  <!-- end share buttons -->

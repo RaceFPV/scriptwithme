@@ -1,0 +1,10 @@
+development:
+  server: "http://localhost:8080/faye"
+  secret_token: "secret"
+test:
+  server: "http://localhost:8080/faye"
+  secret_token: "bigger secret"
+production:
+  server: "http://scriptwith.me:8080/faye"
+  secret_token: "secret"
+  signature_expiration: 3600 # one hour

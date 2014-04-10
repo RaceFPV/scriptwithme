@@ -1,0 +1,21 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show/#{@me}" %>
+<% @namechange = "/scenes/messages/namechange" %>
+<% @namechangeme = "/scenes/messages/namechangeme" %>
+<% @dropline = "/scenes/drop_a_line"%>
+<% @oldname = @original_name %>
+<% @newname = @new_name %>
+<% @line_kinds = ["Say", "Narrative", "Cut-to"] %>
+
+<!-- publish the submitted form to the private_pub server -->
+<% publish_to @scenesubscribe do %>
+<!-- append the new submitted form to the scene using ajax -->
+	$('.addednotice').remove();
+	$("#namechange").append("<%= j render(@namechange) %>");
+<% end %>
+<!-- focus on the say line text box -->
+$('#droplineform').remove();
+$("#droplinerefresh").append("<%= j render(@dropline) %>");
+$('.addednotice').remove();
+$("#namechange").append("<%= j render(@namechangeme) %>");
+$('#input-line').focus();

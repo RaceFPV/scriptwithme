@@ -1,0 +1,9 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{params[:id]}/show" %>
+<% @update = "/live/update" %>
+
+<!-- publish to the scene using private_pub server -->
+<% publish_to @scenesubscribe do %>
+	$('#viewercounter').remove();
+	$("#viewercount").append("<%= j render(@update) %>");
+<% end %>

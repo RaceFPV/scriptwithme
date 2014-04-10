@@ -1,0 +1,21 @@
+<!-- user pages navbar-->
+<ul class="nav nav-pills " style="margin-bottom: 25px;margin-top: -40px;">
+	<li><%= link_to "Home", home_path(@user.name) %></li>
+	<li><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+	<li><%= link_to "Profile", user_profile_path(@user.name) %></li>
+  <li class="active"><%= link_to "Scene Starters", starters_path(@user.name) %></li>
+    <% if @user.provider == "identity" %>
+		<li><%= link_to "Settings", edit_user_path(@user.name) %></li>
+	<% end %>
+    <% if @user.admin == true %>
+      <li><%= link_to "Admin", admin_user_path(@user.name) %></li>
+    <% end %>
+</ul>
+<!-- end navbar -->
+
+<h3> Create your own scene starter </h3>
+<%= form_for :starter, url: savestarter_path do |f| %>
+  <%= f.text_field :startertitle, class: "form-control", placeholder: "Scene starter title" %>
+  <%= f.text_area :startercontent, class: "form-control", placeholder: "Scene starter content" %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

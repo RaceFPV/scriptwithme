@@ -1,0 +1,40 @@
+<!-- user pages navbar if this is our own profile-->
+<ul class="nav nav-pills" style="margin-bottom: 25px;margin-top: -40px;">
+  <li><%= link_to "Home", home_path(@user.name) %></li>
+    <li><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+    <li><%= link_to "Profile", user_profile_path(@user.name) %></li>
+    <li class="active"><%= link_to "Settings", edit_user_path(@user.name) %></li>
+    <% if @user.admin == true %>
+      <li><%= link_to "Admin", admin_user_path(@user.name) %></li>
+    <% end %>
+</ul>
+<!-- end navbar --> 
+<row>
+	<div class="col-md-6 col-md-offset-3" style="padding-right:15px;"> 
+		<div class="panel panel-default">
+			<div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+      			<span style="float:left;" class="glyphicon glyphicon-lock userpanel-title"></span>
+      			<h1 class="panel-title userpanel-title">Change Password</h1>
+      		</div>
+			<div class="panel panel-body " align="center">
+				<div class="scenes centered-text">
+					<%= form_for @user, method: :patch do |f| %>
+              			<div align="center" style="margin-top:20px;">
+      						<span class="label label-default centered-text"> New Password </span>
+        					<%= f.password_field :password, class: "input-password form-control", style: "width:200px;", placeholder: "Password" %>
+    					</div>
+    					<div align="center" style="margin-top:20px;">
+      						<span class="label label-default"> Confirm Password </span>    
+        					<%= f.password_field :password_confirmation, class: "form-control", style: "width:200px;", placeholder: "Confirm password" %>
+                    	</div>
+                    	<br>
+                  		<div align="center">
+                      		<%= f.submit "Update", class: "btn btn-primary" %>
+							<% end %>
+                  		</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</row>

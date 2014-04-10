@@ -1,0 +1,51 @@
+<!-- subscribe to the scene channel via private_pub/faye -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show" %>
+<%= @subscribedtoscene = subscribe_to @scenesubscribe %>
+
+<!-- scene is live alert -->
+<header class="navbar-fixed-top" style="width: 100%;margin-top:50px;" align="center">
+	<% if @scene.state?(:operating) %>
+	<div class="alert alert-info" align="center" style="width: 100%;padding-left:10%;display: inline-block;" id="scenelive">
+		This scene is live right now!
+		<div id="viewercount" style="float: right;">
+			<span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> viewers</span>
+		</div>
+	</div>
+	<% else %>
+	<div class="alert alert-danger" align="center" style="width: 100%;display: inline-block;">
+		This scene has ended
+	</div>
+	<% end %>
+	<div class="alert alert-danger" align="center" style="width: 100%;display: none;" id="sceneliveend">
+		This scene has ended
+	</div>
+</header>
+<!-- end of scene is live alert -->
+
+<!-- Main show page content   -- user generated lines -->
+<%= render 'scenes/scene_lines' %>
+
+<!-- leave scene button -->
+<div align="right" id="namechange">
+  <%= link_to "Leave scene", root_path, class: "btn btn-default" %>
+</div>
+
+<!-- broadcast that we are watching the scene live to faye/private_pub -->
+<% render 'update.js.erb'%>
+
+<!-- include the sidechat so people can talk to the scene writers -->
+<%= render 'sidechats/sidechat' %>
+
+<!-- script that gets the /live/:id/leave route when we close the window -->
+<script>
+    //set the variable for the path to leaving the scene
+    var leavepath = "<%= leave_live_path(@scene) %>";
+    //if the user continues to close the browser window, go to leave_path before they quit
+      window.onunload = window.onbeforeunload = (function(){
+        $.ajax({
+        url:    leavepath,
+        type:   'get',
+        async:  true
+          })
+    });
+</script>

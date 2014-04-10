@@ -1,0 +1,129 @@
+<!-- user pages navbar if this is our own profile-->
+<ul class="nav nav-pills " style="margin-bottom: 25px;margin-top: -40px;">
+  <li class="active"><%= link_to "Home", home_path(@user.name) %></li>
+    <li><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+    <li><%= link_to "Profile", user_profile_path(@user.name) %></li>
+    <% if User.starter?(@user.id) == true %>
+      <li><%= link_to "Scene Starters", starters_path(@user.name) %></li>
+    <% end %>
+    <% if @user.provider == "identity" %>
+    	<li><%= link_to "Settings", edit_user_path(@user.name) %></li>
+    <% end %>
+    <% if @user.admin == true %>
+      <li><%= link_to "Admin", admin_user_path(@user.name) %></li>
+    <% end %>
+</ul>
+<!-- end navbar -->
+<row>
+<!-- form for new character name and scene start -->
+  
+  <div class="col-md-6" style="padding-left:15px;">
+    <div class="panel panel-default">
+      <div class="panel panel-heading" align="center">
+          <span style="float:left;" class="userpanel-title glyphicon glyphicon-pencil"></span>
+          <h1 class="userpanel-title panel-title">Start New Scene</h1>
+      </div>
+      <div class="panel panel-body" style="height:253px">
+        
+          <div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 10%; margin-left: 0px;">
+          <div class="ibl" align="center">
+              <%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:70px; width:70px; margin-top:-20px; margin-left:0px;' %> 
+            <h3>Character name:</h3>
+            <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
+            <div class="input-group" style="margin-top:0px;margin-bottom:-15px;width: 100%;max-width:230px;">
+			<% if @user.characters.last == nil%>
+				<%= f.text_field :character, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
+			<% else %>
+		    	<%= f.text_field :character, value: @user.characters.last.nickname, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
+			<% end %>
+		      <span class="input-group-btn">
+                  <%= f.submit 'Go', class: 'btn btn-default', style: 'height: 34px;' %>
+              </span>
+              
+              </div>
+
+
+<!--   
+
+<br>
+	<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+           Limit by rating
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body" style="min-height: 250px;">
+      	   <span class="label label-default" style="font-size: 15px;"> Rating must be at least a: </span>
+			       <div style="width: 50px;margin-top:7px;">
+      			 <%= f.select :rating, options_for_select(["0","1","2","3","4","5"]),{}, {class: 'selectpickert'} %>
+		      </div>
+=======
+              <br>
+				<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Limit by rating
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body" style="min-height: 250px; background-color: transparent;">
+      	              <span class="label label-default" style="font-size: 15px;"> Rating must be at least a: </span>
+			<div style="width: 50px;margin-top:7px;">
+      			<%= f.select :rating, options_for_select(["0","1","2","3","4","5"]),{}, {class: 'selectpickert'} %>
+
+		    </div>
+      </div>
+    </div>
+  </div>
+
+  -->
+            <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+ 
+      	<script>
+			$('select').selectpicker();
+		</script>
+
+
+
+  <div class="col-md-6" style="padding-right:15px;">
+    <div class="panel panel-default">
+        <div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+          <span style="float:left; font-size:22px;" class="glyphicon glyphicon-facetime-video userpanel-title"></span>
+          <h1 class="panel-title userpanel-title">Watch Live Scenes</h1>
+        </div>
+        <div class="panel panel-body" style="height:273px">
+          <div class="scenes centered-text">
+            <% if Scene.watchable? == nil%>
+              No live scenes available
+            <% else %>
+              <% count = 1 %>
+              <% Scene.watchable?.each do |x| %>
+              	<% if x != nil %>
+                <%= link_to live_path(x.id), class: 'list-group-item', style: 'font-size: 15px; font-weight: 900;' do %>
+                    <span class="pull-left"><%= count %>.</span>
+                    <%= x.title %>
+                  <% end %>
+                <% count += 1 %>
+                <% end %>
+             <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+</row>

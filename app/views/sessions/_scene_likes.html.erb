@@ -1,0 +1,23 @@
+<row>
+  <div class="post" style="width: 40%; height: 250px;margin-left: 30%;margin-top:30px;background-color: #FFF5EE;">
+  <div class="panel panel-default" style="height: 250px;">
+    <div class="panel-heading" align="center">
+      <span class="glyphicon glyphicon-stats" style="float: left;"></span>
+      Currently popular scripts
+    </div>
+    <div class="panel-body" style="padding: 0px; margin: 0px;" align="center">
+    <ul class="list-group">
+      <% count = 1 %>
+      <% Scene.likes?.each do |x| %>
+        <%= link_to savedscene_path(x.id), class: 'list-group-item', style: 'font-size: 15px; font-weight: 900;' do %>
+          <span class="pull-left"><%= count %>.</span>
+          <%= x.title %>
+          <span class="badge">+<%= x.likes %></span>
+        <% end %>
+        <% count += 1 %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+  </div>
+</row>

@@ -1,0 +1,82 @@
+	<div style="margin-top:-80px">
+	  <div class="centered-text start-the-scene-form">
+	    <% if current_user == @user %>
+	    <% else %>
+	      <h3> <%= @user.name %>'s profile </h3>
+	    <% end %>
+	  </div>
+	<br>
+	<!-- user pages navbar if this is our own profile-->
+	<% if current_user == @user %>
+	<ul class="nav nav-pills " style="margin-bottom: 25px;">
+	  <li><%= link_to "Home", @user %></li>
+	    <li class="active"><%= link_to "Saved Scipts", live_index_path(@user) %></li>
+	    <li><%= link_to "Settings", edit_user_path(@user) %></li>
+	</ul>
+	<% end %>
+	<!-- end navbar -->
+
+
+
+
+
+	    <!-- TODO: Make viewing a users favorite scripts less hack'd -->
+
+
+	<!-- form for new character name and scene start -->
+
+	  <div class="col-md-6" style="padding-left:15px;">
+	    <div class="panel panel-default">
+	      <div class="panel panel-heading" align="center">
+	          <span style="float:left" class="glyphicon glyphicon-bookmark"></span>
+	          <h3 class="panel-title">Start new scene</h3>
+	      </div>
+	      <div class="panel panel-body" style="height:253px">
+	        
+	          <div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 10%; margin-left: 0px;">
+	          <div class="ibl" align="center">
+	              <%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:70px; width:70px; margin-top:-20px; margin-left:0px;' %> 
+	            <h3>Character name:</h3>
+	            <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
+	            <div class="input-group" style="margin-top:0px;margin-bottom:-15px;width: 100%;max-width:230px;">
+	                <%= f.text_field :character, class: "form-control centered-text", style: "font-size:16px;" , placeholder: 'eg. Batman', autofocus: true %>
+	                <span class="input-group-btn">
+	                  <%= f.submit 'Go', class: 'btn btn-default', style: 'height: 34px;' %>
+	              </span>
+	              </div>
+	              
+	            <% end %>
+	            </div>
+	          </div>
+	        </div>
+	    </div>
+	  </div>
+	 
+
+
+		<div class="col-md-6" style="padding-right:15px;">
+			<div class="panel panel-default">
+	        <div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+	          <span style="float:left" class=" glyphicon glyphicon-eye-open"></span>
+	          <h3 class="panel-title">Currently live scenes</h3>
+	        </div>
+	        <div class="panel panel-body" style="height:273px">
+	          <div class="scenes centered-text">
+	            <% if Scene.watchable?.count == 0%>
+	              No live scenes available
+	            <% else %>
+	              <% count = 1 %>
+	              <% Scene.watchable?.each do |x| %>
+	                <%= link_to live_path(x.id), class: 'list-group-item', style: 'font-size: 15px; font-weight: 900;' do %>
+	                    <span class="pull-left"><%= count %>.</span>
+	                    <%= x.title %>
+	                  <% end %>
+	                <% count += 1 %>
+	             <% end %>
+	          <% end %>
+	        </div>
+	      </div>
+	    </div>
+		</div>
+	</div>
+	  

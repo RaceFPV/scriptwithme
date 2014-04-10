@@ -1,0 +1,328 @@
+//change all text in the body to the proper styling
+.content {
+  font-family: "Courier New", Courier, monospace;
+  color: #444;
+  background-color: #FFFAEE;
+  padding: 25px;
+  padding-top: 10px;
+  min-height: 550px;
+}
+
+
+.post {
+   position:relative;
+   margin: 0 0 2em 0;
+   background: #FFFFFF;
+   border: 1px solid rgba(0, 0, 0, 0.150);
+   margin-bottom: 20px;
+   padding-right:12%;
+   padding-left:12%;
+   padding-top: 9%;
+    
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(20, 20, 220, 0.1)
+}
+
+.paperclip {
+  position: absolute;
+  top: -5px;
+  left: 30px;
+  width: 30px;
+  height: 60px;
+  background: image-url('paper-clip.png') no-repeat;
+}
+
+.post:before {
+   z-index: -1;
+   position: absolute;
+   top: -2px;
+   left: 0;
+   content: '';
+   width: 100%;
+   height: 100%;
+   background-color: #FFFFFF;
+   border: 1px solid rgba(0, 0, 0, 0.150);
+
+
+   -webkit-transform: rotate(1deg);
+   -moz-transform: rotate(1deg);
+   -o-transform: rotate(1deg);
+   -ms-transform: rotate(1deg);
+   transform: rotate(1deg);
+}
+
+.post:after {
+   z-index: -2;
+   position: absolute;
+   top: 1px;
+   left: -2px;
+   content: '';
+   width: 100%;
+   height: 100%;
+   background-color: #FFFFFF;
+   border: 1px solid rgba(0, 0, 0, 0.150);
+
+
+   -webkit-transform: rotate(359deg);
+   -moz-transform: rotate(359deg);
+   -o-transform: rotate(359deg);
+   -ms-transform: rotate(359deg);
+   transform: rotate(359deg);
+}
+
+//make the line between the lead and the user generated lines
+.vline {
+  margin: 1em 1em 2em;
+}
+
+//make sure the scene lead looks ok and that the fonts are the right size
+.scene_container {
+  padding: 10px;
+  h1 {
+    text-align: center;
+  }
+  p {
+    font-size: 12pt;
+    margin-bottom: 2em;
+    &.lead {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+//for rating system stars
+.ratings a {
+  color: #e5e500;
+}
+#one:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+#one:hover ~ #two{
+  color: #000000;
+  text-decoration: none;
+}
+#one:hover ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+#one:hover ~ #four{
+  color: #000000;
+  text-decoration: none;
+}
+#one:hover ~ #five{
+  color: #000000;
+  text-decoration: none;
+}
+#two:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+#two:hover ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+#two:hover ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+#two:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+#three:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+#three:hover ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+#three:hover ~ #five{
+  color: #000000;
+  text-decoration: none;
+}
+#four:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+#four:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+#five:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+#one:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+#one:focus ~ #two{
+  color: #000000;
+  text-decoration: none;
+}
+#one:focus ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+#one:focus ~ #four{
+  color: #000000;
+  text-decoration: none;
+}
+#one:focus ~ #five{
+  color: #000000;
+  text-decoration: none;
+}
+#two:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+#two:focus ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+#two:focus ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+#two:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+#three:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+#three:focus ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+#three:focus ~ #five{
+  color: #000000;
+  text-decoration: none;
+}
+#four:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+#four:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+#five:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+//end rating system css
+
+
+
+
+//make a pretty page appearance shadow effect using css
+.shadow
+{
+}
+.shadow:before, .effect8:after
+{
+	content:"";
+    position:absolute; 
+    z-index:-1;
+    -webkit-box-shadow:0 0 15px rgba(0,0,0,0.2);
+    -moz-box-shadow:0 0 15px rgba(0,0,0,0.4);
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+    top:0px;
+    bottom:10px;
+    left:0px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+} 
+.shadow:after
+{
+	right:10px; 
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg); 
+       -moz-transform:skew(8deg) rotate(3deg);     
+        -ms-transform:skew(8deg) rotate(3deg);     
+         -o-transform:skew(8deg) rotate(3deg); 
+            transform:skew(8deg) rotate(3deg);
+}
+
+  .uppercase
+  {
+    text-transform: uppercase;
+  }
+
+//formatting for each user inputted line based on its kind/type
+  .sayline {
+    .character {
+      text-transform: uppercase;
+      display: block;
+      font-size: 13pt;
+      line-height: 1em;
+    }
+
+    .line {
+      display: inline-block;
+      max-width: 45%;
+      margin-left: 30%;
+    }
+  }
+
+  .narrativeline {
+    margin-left: -10px;
+    .character {
+      color: #dadada;
+      display: inline-block;
+      text-shadow: none;
+    }
+
+    .line {
+      padding-left: 0;
+      padding-right: 0;
+      display: inline-block;
+    }
+  }
+
+#say-your-line {
+  display: block;
+  clear: both;
+  margin-top: 35px;
+  .input-append {
+    margin-left: 2%;
+    .line-content {
+    }
+  }
+}
+
+//Panel for Input Lines/Change Character area.
+.input-panel{
+  border:solid 1px; 
+  border-color:grey; 
+  border-radius:20px; 
+  padding:20px 0px 20px 0px; 
+  background-color: #ececec
+}
+
+
+//inline block things so they appear on one line
+.ibl {
+  display: inline-block;
+  width: auto;
+}
+
+//hide something from the user
+.hide {
+  display: none;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+ul.no-list-style, li.no-list-style {
+  list-style: none;
+}

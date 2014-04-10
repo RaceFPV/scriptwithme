@@ -1,0 +1,81 @@
+<div class ="col-md-12" style="margin-top:-25px">
+
+
+<div class="col-md-6" style="padding-left:15px;">
+	<div class="panel panel-default">
+		<div class="panel panel-heading" align="center">
+			<span style="float:left;" class="glyphicon glyphicon-user userpanel-title"></span>
+			<h1 class="panel-title userpanel-title">
+				<%= @user.name %> 
+        <% if @user.admin == true %>
+          <span class="label label-danger" style="font-size: 10px;float: right;margin-top:5px;">Admin</span> 
+        <% end %>
+			</h1>
+		</div>
+		<div class="panel panel-body robofont" style="height:300px; padding:20px 20px 20px 20px;margin-top: -20px;">
+
+					<% if (@user.location == "" or @user.location == nil) and (@user.favmovie == "" or @user.favmovie == nil) and (@user.favactor == "" or @user.favactor == nil) and (@user.about == "" or @user.about == nil) and (User.rating?(@user.id) == nil or User.rating?(@user.id) == "") %>
+						<div class="centered-text">Oh no! <%= @user.name %>'s profile is empty!</div>
+					<% end %>
+					
+       
+					<% if @user.location != "" and @user.location != nil %>
+						<div>
+							<span class="ProfileTitle"> Location: </span>
+						 	<%= @user.location %>
+						</div>
+					<% end %>
+					
+					<% if @user.favmovie != "" and @user.favmovie != nil %>
+						<div>
+							<span class="ProfileTitle">  Favorite Movie: </span>
+							<%= @user.favmovie %>
+						</div>
+					<% end %>
+						
+					<% if @user.favactor != "" and @user.favactor != nil %>
+						<div>
+							<span class="ProfileTitle">  Favorite Actor: </span>
+							<%= @user.favactor %>
+						</div>
+					<% end %>
+					
+					<% if @user.about != "" and @user.about != nil %>
+						<div>
+							<span class="ProfileTitle">  About: </span>
+							<%= @user.about %>
+						</div>
+					<% end %>
+			
+						<br>
+
+
+					<% if User.rating?(@user.id) != nil and User.rating?(@user.id) != ""  %>
+		     		<span class="ProfileTitle"> Writing Score: </span>
+		     			<%= User.rating?(@user.id) %> out of 5
+		      <% end %>
+		</div>
+	</div>
+</div>
+<div class="col-md-6" style="padding-right:15px;">
+  <div class="panel panel-default robofont">
+    <div class="panel panel-heading" align="center" style="margin: 0; padding: 5px;">
+      <span style="float:left;" class="glyphicon glyphicon-floppy-disk userpanel-title"></span>
+      <h1 class="panel-title userpanel-title">Saved Scripts </h1>
+      <span class="badge pull-right" style="font-size:14px; margin-top: -22px;">
+				<% if @user.scenecount == nil %> 0
+			    <% else %>
+      			<%= @user.scenecount %>
+	        <% end %>
+      	</span>
+    </div>
+    <div class="panel panel-body" style="height:300px">
+      <%= render partial: '/users/saved_scripts' %>
+    </div>
+  </div>
+</div>
+	<div class="col-md-2 col-md-offset-11">
+		<!-- TODO: make me do something -->
+		<%= link_to "Back", root_path, class: 'btn btn-default btn-block' %> 
+	</div>
+</div>

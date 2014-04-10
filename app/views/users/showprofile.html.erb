@@ -1,0 +1,166 @@
+<!-- user pages navbar-->
+<ul class="nav nav-pills " style="margin-bottom: 25px;margin-top: -40px;">
+	<li><%= link_to "Home", home_path(@user.name) %></li>
+	<li><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
+	<li class="active"><%= link_to "Profile", user_profile_path(@user.name) %></li>
+    <% if User.starter?(@user.id) == true %>
+      <li><%= link_to "Scene Starters", starters_path(@user.name) %></li>
+    <% end %>
+    <% if @user.provider == "identity" %>
+		<li><%= link_to "Settings", edit_user_path(@user.name) %></li>
+	<% end %>
+    <% if @user.admin == true %>
+      <li><%= link_to "Admin", admin_user_path(@user.name) %></li>
+    <% end %>
+</ul>
+<!-- end navbar -->
+<row>
+
+
+<div class="col-md-3 centered-text">
+	<div class="btn-group-vertical">
+		<button type="button" class="btn btn-default" id="changeusernamebutton">Change Username</button>
+		<button type="button" class="btn btn-default" id="editprofilebutton">Edit Profile</button>
+	</div>
+</div>
+
+
+
+<div class="col-md-6">
+	<div class="panel panel-default" id="showprofile" style="display: inherit">
+		
+		<div class="panel panel-heading" align="center">
+			<span style="float:left;" class="glyphicon glyphicon-user userpanel-title"></span>
+			<h1 class="panel-title userpanel-title">
+				<%= @user.name %> 
+			</h1>
+
+		</div>
+		<div class="panel panel-body robofont" style="padding:20px 20px 20px 20px; margin-top: -20px; font-weight:300;">
+
+				
+					<div>
+						<span class="ProfileTitle"> Location: </span>
+					 	<%= @user.location %>
+					</div>
+
+					<div>
+						<span class="ProfileTitle">  Favorite Movie: </span>
+						<%= @user.favmovie %>
+					</div>
+	
+					<div>
+						<span class="ProfileTitle">  Favorite Actor: </span>
+						<%= @user.favactor %>
+					</div>
+
+					<div>
+						<span class="ProfileTitle">  About: </span>
+						<%= @user.about %>
+					</div>
+
+						<br>
+      			
+						<div>
+						  <span class="ProfileTitle"> Writing Score: </span>
+              <% if User.rating?(@user.id) == nil %>
+				        <i>No rating</i>
+			        <% else %>
+            		<%= User.rating?(@user.id) %> out of 5
+			      <% end %>
+					</div>
+				</div>			
+			</div>
+		</div>
+
+<!--Edit User Profile -->
+
+<div class="col-md-6">
+	<div class="panel panel-default" id="editprofile" style="display: none">
+		<div class="panel panel-heading" align="center">
+			<span style="float:left;" class="glyphicon glyphicon-user userpanel-title"></span>
+			<h1 class="panel-title userpanel-title">
+				Edit Profile
+			</h1>
+		</div>
+		<div class="panel panel-body" style="padding:5px 10px 10px 10px; margin-top: -20px;">
+			<div class="scenes centered-text robofont">
+				<%= form_for @user, method: :patch do |f| %>
+				
+					<div align="center" style="margin-top:20px;">
+						<span class="label label-default centered-text"> Location </span>
+						<%= f.text_field :location, class: "form-control", style: "width:250px;", placeholder: "Your location" %>
+					</div>
+					<div align="center" style="margin-top:20px;">
+						<span class="label label-default centered-text"> Favorite Movie </span>
+						<%= f.text_field :favmovie, class: "form-control", style: "width:250px;", placeholder: "Your favorite movie" %>
+					</div>
+					<div align="center" style="margin-top:20px;">
+						<span class="label label-default centered-text"> Favorite Actor </span>
+						<%= f.text_field :favactor, class: "form-control", style: "width:250px;", placeholder: "Your favorite actor" %>
+					</div>
+					<div align="center" style="margin-top:20px;">
+						<span class="label label-default centered-text"> About </span>
+						<%= f.text_area :about, class: "form-control", style: "width:250px;", placeholder: "About yourself" %>
+					</div>
+					<br>
+					<div align="center">
+						<%= f.submit "Update", class: "btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+
+<!--Edit Username-->
+
+	<div class="panel panel-default" id="changeusername" style="display: none">
+		<div class="panel panel-heading" align="center">
+			<span style="float:left;" class="glyphicon glyphicon-user userpanel-title"></span>
+			<h1 class="panel-title userpanel-title">
+				Change Username
+			</h1>
+		</div>
+		<div class="panel panel-body robofont" style="padding:5px 20px 20px 20px; margin-top: -20px;">
+			<%= form_for @user, method: :patch do |f| %>
+				<div align="center" style="margin-top:20px;">
+					<span class="label label-default centered-text"> Username </span>
+					<%= f.text_field :name, class: "form-control", style: "width:200px;", placeholder: "Username", autofocus: true %>
+				</div>
+			<br>
+			<div align="center">
+				<%= f.submit "Change", class: "btn btn-primary" %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+</row>
+
+
+
+
+
+
+<!-- buffers so our form doesn't get longer than the page -->
+<div id="usernamebuffer" style="min-height: 100px;display: inherit"></div>
+<div id="profilebuffer" style="min-height: 550px;display: none"></div>
+
+<!-- script to allow flipping between change username and edit profile panels -->
+<script>
+$("#changeusernamebutton").on('click', function() {
+  document.getElementById('editprofile').style.display= 'none';
+  document.getElementById('changeusername').style.display = 'inherit'; 
+  document.getElementById('showprofile').style.display = 'none';
+
+});
+$("#editprofilebutton").on('click', function() {
+  document.getElementById('editprofile').style.display= 'inherit';
+  document.getElementById('changeusername').style.display = 'none'; 
+  document.getElementById('showprofile').style.display = 'none'; 
+});
+
+</script>

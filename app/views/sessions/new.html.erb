@@ -1,0 +1,56 @@
+<h2 class="centered-text" style="margin-top:-30px;">
+  <b>Write scripts and stories with anyone</b>
+  <h4 class="centered-text robotext" style="color:#3498db; margin-top:-5px; font-size:20px">Become the character!   <span style="">Instantly create stories and lives!</span>   <span style="">You write the scene!</h4>
+
+<!-- form for new character name and scene start -->
+<div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 110px; margin-left: 40px;display:block;">
+	<div class="ibl" align="center">
+    
+     <p class="robofont" style="font-size:26px;font-weight:300;">Pick a character name</p>
+     <%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:120px; width:120px; margin-top:-45px; margin-left:-125px;', align: 'left' %> 
+    <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
+    <div class="input-group" style="margin-top:5px;margin-bottom:-15px;max-width:270px;">
+		<% if @user.characters.last == nil%>
+			<%= f.text_field :character, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
+		<% else %>
+		    <%= f.text_field :character, value: @user.characters.last.nickname, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Batman', autofocus: true %>
+		<% end %>
+        <span class="input-group-btn">
+        	<%= button_tag(type: 'submit', class: "btn btn-default", style: "height:34px") do %>
+       <span class="glyphicon glyphicon-pencil"></span>
+        <% end %>
+     	</span>
+      </div>
+    <% end %>
+    <p class="robofont" style="font-size:25px;font-weight:300;">to connect instantly.</p>
+    
+    </div>
+</div>
+
+
+<!-- Live Scenes -->
+
+  <div class="col-md-12" style="padding-top: 100px;">
+  <div class="panel panel-default">
+    <div class="col-md-3" style="padding-top:9px;">
+      <span class="robofont" style="font-size:15px; padding-top:8px;">Watch Live Scenes:</span>
+      </div>
+      <div class="col-md-9">
+              <% if Scene.watchable? == nil%>
+                <div class= "" style="margin-top:10px; font-weight:300;">
+                  <span class="robofont" >No live scenes currently available</span>
+                </div>
+              <% else %>
+              <ul class="nav nav-pills">
+                <% Scene.watchable?.each do |x| %>
+                <% if x != nil%>
+                    <li><a href="<%= live_path(x.id) %> "><%= x.title %></a></li> 
+                    <% end %>
+               <% end %>
+             </ul>
+            <% end %>
+          
+        </div>
+      </div>
+    </div>
+  

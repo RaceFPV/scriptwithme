@@ -1,0 +1,5 @@
+<% if @inscene == true %>
+	<p class="robofont sidechatpost"><i style="color: #5151ff"><span class="glyphicon glyphicon-pencil"></span> <%= @username %>:</i><br> <%= @content %></p>
+<% else %>
+	<p class="robofont sidechatpost"><i style="color: rgb(136, 136, 136)"><%= @username %>:</i><br> <%= @content %></p>
+<% end %>

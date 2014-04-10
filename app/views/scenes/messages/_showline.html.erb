@@ -1,0 +1,15 @@
+<!-- check what kind of line this is and display it appropriately -->
+<% if @line.kind == "Say" %>
+  <p class="sayline">
+    <span class="character centered-text"> <%= @line.nickname %></span>
+    <span class="line"> <%= @line.content %></span>
+  </p>
+<% elsif @line.kind == "Narrative" %>
+  <p class="narrativeline">
+    <span class="line"> <%= @line.content %></span>
+  </p>
+<% elsif @line.kind == "Cut-to" %>
+          <p class="narrativeline">
+            <span class="line"> <%= @line.content.upcase %></span>
+          </p>
+<% end %>

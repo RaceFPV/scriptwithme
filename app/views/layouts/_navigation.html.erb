@@ -1,0 +1,28 @@
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400' rel='stylesheet' type='text/css'> 
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300' rel='stylesheet' type='text/css'> 
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:100' rel='stylesheet' type='text/css'> 
+
+<%= link_to root_path, class: 'brand' do%>
+	<%= image_tag "clapper3.png", :alt => "logo", style: 'height:28px; width:30px; margin-top:-6px;' %> 
+	<span style="font-weight: 400;">Scriptwith</span><span style="font-weight: 300;">.me</span> <span style="font-weight: 200; font-size:14px;  color:#2184c2;">beta</span>
+<% end %>
+
+<!-- right side dropdown with username or sign in option -->
+<nav class="pull-right">
+  <ul class="nav header-nav">
+    <li class="dropdown signin-dropdown">
+      <% if signed_in? %>
+        <%= render partial: 'layouts/nav_signedin' %>
+      <% else %>
+		<%= render partial: 'layouts/nav_signedout' %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+<%= render partial: 'layouts/nav_socialmedia' %>
+
+
+<!-- system wide alert -->
+<div  id="alertmessagecontainer">
+</div>

@@ -1,0 +1,25 @@
+<div align="center" style="margin-top:25px;" class="start-the-scene-form">
+<%= form_for @user do |f| %>
+    <h3 style="margin-top:-20px;"> New account registration</h3>
+    <div class="vline"></div>
+    <div style="max-width: 250px;display:block;margin-top: -15px;">
+      <span class="label label-default"> Username </span>
+        <%= f.text_field :name, class: "input-username form-control", placeholder: "Name", autofocus: true %>
+    </div>
+    <div style="margin-top:15px;display:block;max-width: 250px;">
+      <span class="label label-default"> Email </span>
+      <%= f.text_field :email, class: "input-email form-control", placeholder: "Email" %>
+    </div>
+    <div style="margin-top:15px;display:block;max-width: 250px;">
+      <span class="label label-default"> Password </span>
+        <%= f.password_field :password, class: "input-password form-control", placeholder: "Password" %>
+    </div>
+    <div style="margin-top:15px;display:block;max-width: 250px;">
+      <span class="label label-default"> Confirm Password </span>    
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
+    </div>
+    <div style="margin-top:15px;max-width: 175px;display:block;">
+      <%= f.submit "Create account", class: "btn btn-default btn-block" %>
+    </div>
+  <% end %>
+</div>

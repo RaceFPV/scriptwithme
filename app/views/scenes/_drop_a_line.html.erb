@@ -1,0 +1,114 @@
+<div id="droplineform">
+<!-- placeholder for the notice when partner is typing sent via ajax/faye -->
+<div id="typingalert" style="display: inline;margin-top: -20px; text-align:center;"></div>  
+<!-- placeholder for the notice when character name has changed -->
+<div id="namechange" style="display: inline;margin-top: -20px; text-align:center;"></div>
+<br>
+<div class="panel input-panel">
+<div style="margin-top: -20px;width: 75%;" align="center">
+    <!-- start of the form for adding a new line to the scene -->
+    <%= form_for :drop_a_line, url: drop_a_line_path, :html => { :id => 'say-your-line'}, remote: true, class: 'clearfix' do |f| %>
+    <row>
+    <div class="input-group">
+      <span class="input-group-btn" style="width: 28%;">
+      	<%= f.select :kind, options_for_select(@line_kinds), {}, {class: "selectpicker"} %>
+      </span>
+      <%= f.text_field :content, class: 'form-control', autofocus: true, id: 'input-line', :autocomplete => :off %>
+      <span class="input-group-btn" style="vertical-align: top;">
+        <%= f.submit 'Send', disable_with: 'Sending…', class: 'btn btn-default', style: 'height: 34px;' %>
+      </span>
+     </div>
+    </row>
+  <% end %>
+  <!-- end new line form -->
+  
+<%= form_for :change_name, url: change_name_path, remote: true, class: 'clearfix' do |f| %>
+  <!-- form to allow the user to change their character -->
+  <div class="input-group" style="width: 45%">
+    <%= f.text_field :new_name, class: 'form-control pull-right', id: 'namechangeinput', placeholder: 'Change Character', :autocomplete => :off  %>
+	  <div class="input-group-btn">
+		<%= button_tag(type: 'submit', class: "btn btn-default", style: "height:34px") do %>
+		   <span class="glyphicon glyphicon-transfer"></span>
+      	<% end %>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height: 34px;margin-left: -8px;" tabindex="-1">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+  		 <ul class="dropdown-menu pull-right" role="menu">
+  			<% @scene.characters.each do |x| %>
+  				<% if x.user_id == @me %>
+    				<li><%= link_to x.nickname, {:controller => "messages", :action => "change_name", :reuse_name => x.nickname }, method: :post, remote: true %></li>
+    			<% end %>
+    		<% end %>
+  		 </ul>
+	  </div>
+  </div>
+  <!-- end character change form -->
+<% end %>
+</div>
+</div>
+</div>
+<!-- script for partner typing alerts -->
+<script type="text/javascript">
+var infopath = "<%= info_path(@scene.id) %>"
+    //AJAX to update when user is typing and when input is submitted
+    var isTyping = false;
+    var lastKey = null;
+    $('#input-line').on('keydown', function (e) {
+      if (e.which == 13) {
+        $('input[type=submit]', '#say-your-line').click();
+        isTyping = false;
+        lastKey = null;
+        return false;
+      } else {
+        lastKey = new Date();
+        if (!isTyping) {
+          $.ajax({
+            url: infopath,
+            type: "post",
+            data: {current_action: "typing"},
+       		async:  true
+          });
+          isTyping = true;
+        }
+      }
+    });
+    
+    //If user has not typed for 2+ seconds update ajax
+    var timeout = setInterval(function() {
+      var now = new Date();
+      // If key idle more than 2 seconds, then 
+      if (isTyping && lastKey && (now.getTime() - lastKey.getTime())/1000 > 1) {
+        $.ajax({
+          url: infopath,
+          type: "post",
+          data: {current_action: "stop_typing"},
+          async:  true
+        });
+        isTyping = false;
+      }
+    }, 1000);
+</script>
+<!-- end typing alerts script -->
+      	<script>
+			$('select').selectpicker();
+		</script>
+		
+<!-- allow user to end scene with 'esc' key
+<script>
+	var endpressed = false;
+	$(document).keyup(function(e) {
+		
+	if (endpressed == false){
+  if (e.keyCode == 27) {
+  	e.preventDefault();
+  	endpressed = true; 
+  	  $.ajax({
+            url: endscene,
+            type: "get",
+          });
+  	}   // esc
+  }
+});
+</script>
+ -->

@@ -1,0 +1,38 @@
+<!-- show the lead in/start of scene -->
+<div class="scene_container clearfix" id="scene_container">
+  <p class="lead"> Intro: </p>
+  <br>
+  <p class="lead uppercase"> <%= @title %> </p>
+  <br> 
+  <p class="lead"> <%= @content %> </p>
+  <div class="vline"></div>
+    <!-- show the scene user created lines-->
+    <!-- check if any lines currently exist and if not, let the users know -->
+    <% if @scene.lines.count == 0 %>
+      <p class="sayline emptyscript" align="center">
+        <em>And... Begin scene!</em>
+    </p>
+    <% end %>
+    <!-- list all currently posted lines -->
+    <% @scene.lines.order("created_at").each do |line| %>
+      <!-- check what kind of line this is and display it appropriately -->
+      <% if line.kind == "Say" %>
+        <p class="sayline">
+          <span class="character centered-text"> <%= line.nickname %></span>
+          <span class="line"> <%= line.content %></span>
+        </p>
+        <% elsif line.kind == "Narrative" %>
+          <p class="narrativeline">
+<!--        <span class="character"> <%= line.nickname %> </span>-->
+            <span class="line"> <%= line.content %></span>
+          </p>
+        <% elsif line.kind == "Cut-to" %>
+          <p class="narrativeline">
+<!--        <span class="character"> <%= line.nickname %> </span>-->
+            <span class="line"> <%= line.content.upcase %></span>
+          </p>
+        <% end %>
+      <% end %>
+      <!-- end list of currently posted lines -->
+  <!-- end scene user lines -->
+</div>
