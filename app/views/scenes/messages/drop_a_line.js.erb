@@ -12,7 +12,7 @@ $('.addednotice').remove();
 <!-- append the new submitted form to the scene using ajax -->
 $("#scene_container").append("<%= j render(@showline) %>");
 <!-- scroll to the bottom of the page -->
-$("body").animate({scrollTop: $("#namechange").position().top},100);
+document.getElementById('namechange').scrollTop = 9999999;
 <% end %>
 <!-- Clear line input -->
 $("#say-your-line")[0].reset();

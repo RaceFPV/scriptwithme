@@ -13,9 +13,7 @@ $('.sidechatpost').first().remove();
 	$("#sidechatlog").append("<%= j render(@submitline) %>");
 	document.getElementById('sidechatnotify').style.display= 'none';
 <!-- scroll to the bottom of the page -->
-mostrecent = $("#sidechatlog p").last();
-$("#sidechatlog").animate({scrollTop: $(mostrecent).position().top},100);
-<% end %>
+document.getElementById('sidechatlog').scrollTop = 9999999;
 <!-- Clear line input -->
 $("#sidechat_submit")[0].reset();
 $('#sidechatinput').focus();
