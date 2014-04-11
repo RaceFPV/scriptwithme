@@ -1,10 +1,10 @@
 <!-- set some variables for private_pub to know where things should go -->
-<% @scenesubscribe = "/scenes/#{@scene.id}/show/#{@me}" %>
+<% @scenesubscribe = "/scenes/#{params[:id]}/show/#{@me}" %>
 
 <% publish_to @scenesubscribe do %>
 <!-- append the new submitted form to the scene using ajax -->
-	var count = 0;
-	var left = false;
+	count = 0;
+	left = false;
     	document.getElementById('partnerdisconnect').style.display='none';
     	document.getElementById('partnerleft').style.display='none';
 <% end %>
