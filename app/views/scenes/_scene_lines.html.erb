@@ -14,20 +14,28 @@
     </p>
     <% end %>
     <!-- list all currently posted lines -->
-    <% @scene.lines.order("created_at").each do |line| %>
+    <% @scene.lines.order("created_at").each_with_index do |line, i| %>
+    <!-- stuff for line removal -->
+    <% @lineid = line.id.to_s.chomp('?#{@scene.id}')%>
       <!-- check what kind of line this is and display it appropriately -->
       <% if line.kind == "Say" %>
-       		<p class="sayline">
+      	<% if i != 0 and @scene.lines[i-1].nickname == line.nickname %>
+      		<p class="sayline" style="margin-top:-25px;" id=<%= @lineid %>>
+          <span class="line"> <%= line.content %></span>
+         </p>
+      	<% else %>
+       		<p class="sayline" id=<%= @lineid %>>
       	    	<span class="character centered-text"> <%= line.nickname %></span>
        		<span class="line"> <%= line.content %></span>
         	</p>
+        	<% end %>
         <% elsif line.kind == "Narrative" %>
-          <p class="narrativeline">
+          <p class="narrativeline" id=<%= @lineid %>>
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content %></span>
           </p>
         <% elsif line.kind == "Cut-to" %>
-          <p class="narrativeline">
+          <p class="narrativeline" id=<%= @lineid %>>
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content.upcase %></span>
           </p>
