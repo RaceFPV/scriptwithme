@@ -30,6 +30,7 @@
 <script>
 $("#sidechatclose").click(function(e) {
 	e.preventDefault();
+	document.getElementById('sidechattoggle').style.backgroundColor='#428BCA';
 	$("#sidechat").toggleClass("active");
   $("#sidechat_submit").toggleClass("active");
 });
