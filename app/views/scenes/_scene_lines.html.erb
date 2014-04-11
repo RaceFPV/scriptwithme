@@ -14,9 +14,7 @@
     </p>
     <% end %>
     <!-- list all currently posted lines -->
-    <% @scene.lines.order("created_at") do |line| %>
-    <!-- stuff for line removal -->
-    <% @lineid = line.id.to_s.chomp('?#{@scene.id}')%>
+    <% @scene.lines.order("created_at").each do |line| %>
       <!-- check what kind of line this is and display it appropriately -->
       <% if line.kind == "Say" %>
        		<p class="sayline">
