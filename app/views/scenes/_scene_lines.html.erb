@@ -19,21 +19,21 @@
     <% @lineid = line.id.to_s.chomp('?#{@scene.id}')%>
       <!-- check what kind of line this is and display it appropriately -->
       <% if line.kind == "Say" %>
-      	<% if i != 0 and @scene.lines[i-1].nickname == line.nickname %>
+      	<% if i != 0 and @scene.lines[i-1].nickname == line.nickname and line.id == @scene.lines.last.id %>
       		<p class="sayline" style="margin-top:-25px;" id=<%= @lineid %>>
         <p class="sayline">
           <span class="character centered-text"> <%= line.nickname %></span>
           <span class="line"> <%= line.content %></span>
         <% if @me == line.character_id %>
-         	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
+         	<%= link_to "undo", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
          <% end %>
          </p>
       	<% else %>
        		<p class="sayline" id=<%= @lineid %>>
       	    	<span class="character centered-text"> <%= line.nickname %></span>
        		<span class="line"> <%= line.content %></span>
-          <% if @me == line.character_id %>
-         	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
+          <% if @me == line.character_id and line.id == @scene.lines.last.id %>
+         	<%= link_to "undo", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
           <% end %>
         	</p>
         	<% end %>
@@ -41,16 +41,16 @@
           <p class="narrativeline" id=<%= @lineid %>>
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content %></span>
-             <% if @me == line.character_id %>
-              	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
+             <% if @me == line.character_id and line.id == @scene.lines.last.id %>
+              	<%= link_to "undo", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
              <% end %>
           </p>
         <% elsif line.kind == "Cut-to" %>
           <p class="narrativeline" id=<%= @lineid %>>
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content.upcase %></span>
-            <% if @me == line.character_id %>
-            	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
+            <% if @me == line.character_id and line.id == @scene.lines.last.id %>
+            	<%= link_to "undo", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
           <% end %>
           </p>
         <% end %>
