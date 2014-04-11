@@ -10,12 +10,12 @@
 $('.emptyscript').remove();
 $('.addednotice').remove();
 $('.addednotice').remove();
-$('#undoline').remove();
 <!-- append the new submitted form to the scene using ajax -->
 $("#scene_container").append("<%= j render(@showline) %>");
 <!-- scroll to the bottom of the page -->
 $("body").animate({scrollTop: $("#namechange").position().top},100);
 <% end %>
+$('#undoline').remove();
 $('#<%= @lineid %>').append("<%= j render(@removelink) %>")
 <!-- Clear line input -->
 $("#say-your-line")[0].reset();
