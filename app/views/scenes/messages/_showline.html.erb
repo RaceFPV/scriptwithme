@@ -1,15 +1,22 @@
 <!-- check what kind of line this is and display it appropriately -->
+<% @lineid = "#{@line.id}"%>
 <% if @line.kind == "Say" %>
-  <p class="sayline">
-    <span class="character centered-text"> <%= @line.nickname %></span>
-    <span class="line"> <%= @line.content %></span>
-  </p>
+  <% if @lastnickname != nil and session[:user] == @lastnickname %>
+    <p class="sayline" style="margin-top:-25px;" id=<%= @lineid %>>
+      <span class="line"> <%= @line.content %></span>
+     </p>
+	<% else %>
+  	<p class="sayline" id=<%= @lineid %>>
+   	 <span class="character centered-text"> <%= @line.nickname %></span>
+  	  <span class="line"> <%= @line.content %></span>
+	 </p>
+  <% end %>
 <% elsif @line.kind == "Narrative" %>
-  <p class="narrativeline">
+  <p class="narrativeline" id="#{@line.id}">
     <span class="line"> <%= @line.content %></span>
   </p>
 <% elsif @line.kind == "Cut-to" %>
-          <p class="narrativeline">
+          <p class="narrativeline" id="#{@line.id}">
             <span class="line"> <%= @line.content.upcase %></span>
           </p>
 <% end %>

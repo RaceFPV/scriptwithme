@@ -79,6 +79,13 @@
     if @scene.state?(:waiting)
       @scene.start
     end
+     #get previous lines nickname
+     @linecount = @scene.lines.count rescue 0
+      if @linecount != 0
+        @lastnickname = @scene.lines.last.nickname
+      else
+        @lastnickname = nil
+      end
     #create a new line row and use the drop_a_line params
     @line = Line.new(params[:drop_a_line])
     #set the parameters for the new line
@@ -89,6 +96,7 @@
     @line[:kind]  = params[:drop_a_line][:kind]
     #if the line saves, run drop_a_line.js.erb otherwise flash an error
       if @line.save
+        @lineid = @line.id.to_s.chomp('?#{@scene.id}')
         return render 'scenes/messages/drop_a_line'
       else
         return render 'scenes/messages/drop_a_line_error'
@@ -134,7 +142,23 @@
     #render the page that triggers the faye alert
     render 'scenes/messages/namechange'
   end
-  
+
+  def deleteline
+    @scene = Scene.find(params[:id])
+    #find the line we want to delete, go through the list of lines in the scene
+    # and then delete it.
+    @line = params[:line]
+    @scene.lines.each do |x|
+      if x.id.to_s.chomp('?#{@scene.id}') == @line
+        #dont let people try and abuse the delete link if they ever find it
+        if x.character_id == current_character_hash[:user_id]
+         x.destroy
+        end
+      end
+    end
+  end
+
+
     #when a user ends the scene, let everyone know
   def endscene
     @me = current_character_hash[:user_id]

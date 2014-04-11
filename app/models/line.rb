@@ -17,6 +17,7 @@ class Line < ActiveRecord::Base
   belongs_to :scene
   validates :content, presence: true
   validates :kind, presence: true
+  default_scope -> {order('created_at')}
 
   attr_accessible :content, :kind, :nickname
 end

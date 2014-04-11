@@ -21,6 +21,7 @@ Scriptwithme::Application.routes.draw do
   match  '/scenes/:id/savetitle', to: 'scenes#savescenetitle', via: 'post', as: :save_scene_title
   match  '/scenes/:id/unsave', to: 'scenes#unsave', via: 'delete', as: :unsavescene
   
+  
   #routes for the scene side chat
   match  '/scenes/:id/sidechat', to: 'sidechats#show', via: 'get', as: :sidechat
   match  '/scenes/:id/sidechat', to: 'sidechats#submit', via: 'post', as: :sidechatsend
@@ -40,6 +41,7 @@ Scriptwithme::Application.routes.draw do
   match  '/messages/:id/drop_a_line', to: 'messages#drop_a_line', via: 'post', as: :drop_a_line
   match  '/messages/:id/change-name', to: 'messages#change_name', via: 'post', as: :change_name
   match  '/messages/:id/end', to: 'messages#endscene', via: 'get', as: :endscene
+  match  '/messages/:id/delete/:line', to: 'messages#deleteline', via: 'get', as: :deleteline
   
   #routes for other pages
   match  '/users/:id', to: 'users#show', via: 'get', as: :scene_scripts

@@ -1,0 +1,7 @@
+<!-- set some variables for private_pub to know where things should go -->
+<% @scenesubscribe = "/scenes/#{@scene.id}/show" %>
+<% @lineremove = "#{@line}" %>
+<!-- publish the submitted form to the private_pub server -->
+<% publish_to @scenesubscribe do %>
+	$('#<%= @lineremove %>').remove();
+<% end %>
