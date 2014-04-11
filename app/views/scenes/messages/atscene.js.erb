@@ -3,8 +3,10 @@
 
 <!-- publish the submitted form to the private_pub server -->
 <% publish_to @scenesubscribe do %>
+count = -3;
+<% end %>
+<% publish_to @scenesubscribe do %>
 <!-- append the new submitted form to the scene using ajax -->
-	count = 0;
 	left = false;
     	document.getElementById('partnerdisconnect').style.display='none';
     	document.getElementById('partnerleft').style.display='none';
