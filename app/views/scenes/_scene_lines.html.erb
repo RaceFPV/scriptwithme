@@ -13,6 +13,7 @@
         <em>And... Begin scene!</em>
     </p>
     <% end %>
+  
     <!-- list all currently posted lines -->
     <% @scene.lines.order("created_at").each_with_index do |line, i| %>
     <!-- stuff for line removal -->
