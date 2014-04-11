@@ -27,7 +27,6 @@
         
           <div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 10%; margin-left: 0px;">
           <div class="ibl" align="center">
-              <%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:70px; width:70px; margin-top:-20px; margin-left:0px;' %> 
             <h3>Character name:</h3>
             <%= form_for :start_path, url: waiting_random_partner_path do |f| %>
             <div class="input-group" style="margin-top:0px;margin-bottom:-15px;width: 100%;max-width:230px;">
@@ -43,7 +42,6 @@
               </div>
 
 
-<!--   
 
 <br>
 	<div class="panel-group" id="accordion">
@@ -61,29 +59,10 @@
 			       <div style="width: 50px;margin-top:7px;">
       			 <%= f.select :rating, options_for_select(["0","1","2","3","4","5"]),{}, {class: 'selectpickert'} %>
 		      </div>
-=======
-              <br>
-				<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Limit by rating
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse">
-      <div class="panel-body" style="min-height: 250px; background-color: transparent;">
-      	              <span class="label label-default" style="font-size: 15px;"> Rating must be at least a: </span>
-			<div style="width: 50px;margin-top:7px;">
-      			<%= f.select :rating, options_for_select(["0","1","2","3","4","5"]),{}, {class: 'selectpickert'} %>
-
 		    </div>
       </div>
     </div>
   </div>
-
-  -->
             <% end %>
             </div>
           </div>
