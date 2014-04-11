@@ -3,10 +3,10 @@
 <% @sidesubscribe = "/scenes/#{params[:id]}/show/sidechat" %>
 <%= @sidesubscribed = subscribe_to @sidesubscribe %>
 
-<a id="sidechattoggle" class="btn btn-primary btn-lg toggle"><i class="fa fa-users"></i></a>
+<a id="sidechattoggle" class="btn btn-primary btn-lg toggle"><i class="fa fa-comments-o"></i></a>
 <div id="sidechat" class="leather">
   <ul class="sidebar-nav" style="height: 100%;">
-		<a id="sidechatclose" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+		<a id="sidechatclose" class="btn btn-default pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidechat-brand"><%= link_to "Sidechat", nil %></li>
     <div id="sidechatlog" style="overflow-y: hidden;background: rgba(255, 255, 255, .5);height:100%;">
 									<div>
