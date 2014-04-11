@@ -13,7 +13,7 @@
   def atscene
     #give the current users user_id a variable
     @me ||= session[:user_id]
-    render :nothing => true
+    render 'scenes/messages/atscene'
   end
   # ----------- End of scene verification --------------
   
