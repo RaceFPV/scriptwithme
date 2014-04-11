@@ -153,6 +153,7 @@
         #dont let people try and abuse the delete link if they ever find it
         if x.character_id == current_character_hash[:user_id]
          x.destroy
+          return render 'scenes/messages/deleteline'
         end
       end
     end
