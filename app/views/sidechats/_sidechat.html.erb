@@ -3,53 +3,39 @@
 <% @sidesubscribe = "/scenes/#{params[:id]}/show/sidechat" %>
 <%= @sidesubscribed = subscribe_to @sidesubscribe %>
 
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-	<ul class="nav navbar-nav side-nav">
-		<div class="panel-group" id="sideaccordion">
-			<div class="panel">
-				<a class="glyphicon glyphicon-chevron-left" id="sidechatclick" data-toggle="collapse" data-parent="#sideaccordion" data-target="#sidechat" title="Show sidechat" href="#" style=""><br><span style="font-size: 13px;margin-right: 5px; color:#333333;">Chat</span><span class="glyphicon glyphicon-certificate" id="sidechatnotify" style="display: none;color: red;margin-right:30px;margin-top:10px;float:left;padding-bottom: 30px;font-size: 24px;"><span class="glyphicon glyphicon-chevron-left" style="margin-top:10px;"></span></span></a>
-				<div id="sidechat" class="panel-collapse collapse">
-					<nav role="navigation">
-						<div class="collapse navbar-collapse navbar-ex1-collapse">
-							<ul class="nav navbar-nav side-nav-two">
-								<a id="sidechatclick1" class="glyphicon glyphicon-chevron-right" data-toggle="collapse" data-parent="#sideaccordion" data-target="#sidechat" title="Hide sidechat" href="#" style="color:#333333; width:35px;float: left; margin-top: 150px;"><br>Hide</a>
-								<div id="sidechatlog" class="panel panel-body" style="height: 70%;background: rgba(255, 255, 255, .5);overflow-y: hidden;border-color: #eaeaea; border-width: 1px; border-style: solid;">
+<a id="sidechattoggle" class="btn btn-primary btn-lg toggle"><i class="fa fa-users"></i></a>
+<div id="sidechat" class="leather">
+  <ul class="sidebar-nav" style="height: 100%;">
+		<a id="sidechatclose" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidechat-brand"><%= link_to "Sidechat", nil %></li>
+    <div id="sidechatlog" style="overflow-y: hidden;background: rgba(255, 255, 255, .5);height:100%;">
 									<div>
-										<p class ="robofont" style="padding-bottom:10px;border-bottom-width: 1px; border-bottom-color: #eaeaea;border-bottom: dotted;">Discuss scene here.</p>
+                    <p class="robofont" align="center" style="padding-top:15px;padding-bottom:10px;border-bottom-width: 1px; border-bottom-color: #eaeaea;border-bottom: dotted;">Discuss scene here.</p>
 									</div>
 								</div>
 								
 								<!-- start of the form for adding a new sidechat message -->
 								<%= form_for :sidechatsend, url: sidechatsend_path, :html => { :id => 'sidechat_submit'}, remote: true, class: 'clearfix' do |f| %>
-										<div class="input-group" style="width: 190px;margin-left:35px;">
+										<div class="input-group" style="width: 245px;">
                       <%= f.text_field :content, id: 'sidechatinput', class: 'form-control', style: 'background: rgba(255, 255, 255, .5);', :autocomplete => :off %>
-												<span class="input-group-btn" style="vertical-align: top;">
+												<span class="input-group-btn">
 													<%= f.submit 'Send', disable_with: 'Sending…', class: 'btn btn-default robofont', style: 'height: 34px;background: rgba(255, 255, 255, .5);' %>
 												</span>
 										</div>
 								<% end %>
 								<!-- end new sidechat message form -->
-								
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
 	</ul>
 </div>
 
 <script>
-$(document).ready(function() {
-  $('#sidechatclick').click(function(e) {
-  e.preventDefault();
-  document.getElementById("sidechatclick").style.display="none";
-  
+$("#sidechatclose").click(function(e) {
+	e.preventDefault();
+	$("#sidechat").toggleClass("active");
+  $("#sidechat_submit").toggleClass("active");
 });
-  $('#sidechatclick1').click(function(e) {
-  	document.getElementById("sidechatclick").style.display="inherit";
-
-  e.preventDefault();  
-});
+$("#sidechattoggle").click(function(e) {
+	e.preventDefault();
+	$("#sidechat").toggleClass("active");
+  $("#sidechat_submit").toggleClass("active");
 });
 </script>
