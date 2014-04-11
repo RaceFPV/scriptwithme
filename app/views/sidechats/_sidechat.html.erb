@@ -33,9 +33,11 @@ $("#sidechatclose").click(function(e) {
 	document.getElementById('sidechattoggle').style.backgroundColor='#428BCA';
 	$("#sidechat").toggleClass("active");
   $("#sidechat_submit").toggleClass("active");
+  document.getElementById('viewercount').style.display='inherit';
 });
 $("#sidechattoggle").click(function(e) {
 	e.preventDefault();
+  document.getElementById('viewercount').style.display='none';
   document.getElementById('sidechattoggle').style.backgroundColor='#428BCA';
 	$("#sidechat").toggleClass("active");
   $("#sidechat_submit").toggleClass("active");
