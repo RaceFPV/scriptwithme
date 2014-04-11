@@ -25,7 +25,7 @@
           <span class="character centered-text"> <%= line.nickname %></span>
           <span class="line"> <%= line.content %></span>
         <% if @me == line.character_id %>
-         	<%= link_to "remove", deleteline_path(params[:id], @lineid), remote: true, style: 'float: right' %>
+         	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
          <% end %>
          </p>
       	<% else %>
@@ -33,7 +33,7 @@
       	    	<span class="character centered-text"> <%= line.nickname %></span>
        		<span class="line"> <%= line.content %></span>
           <% if @me == line.character_id %>
-         	<%= link_to "remove", deleteline_path(params[:id], @lineid), remote: true, style: 'float: right' %>
+         	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
           <% end %>
         	</p>
         	<% end %>
@@ -42,7 +42,7 @@
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content %></span>
              <% if @me == line.character_id %>
-              	<%= link_to "remove", deleteline_path(params[:id], @lineid), remote: true, style: 'float: right' %>
+              	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
              <% end %>
           </p>
         <% elsif line.kind == "Cut-to" %>
@@ -50,7 +50,7 @@
 <!--        <span class="character"> <%= line.nickname %> </span>-->
             <span class="line"> <%= line.content.upcase %></span>
             <% if @me == line.character_id %>
-            	<%= link_to "remove", deleteline_path(params[:id], @lineid), remote: true, style: 'float: right' %>
+            	<%= link_to "remove", deleteline_path(@scene.id, @lineid), remote: true, style: 'float: right' %>
           <% end %>
           </p>
         <% end %>
