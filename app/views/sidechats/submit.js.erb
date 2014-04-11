@@ -11,7 +11,7 @@ $('.sidechatpost').first().remove();
 }
 <!-- append the new submitted form to the sidechat using ajax -->
 	$("#sidechatlog").append("<%= j render(@submitline) %>");
-	document.getElementById('sidechatclose').style.background-color='#C92121';
+	document.getElementById('sidechattoggle').style.backgroundColor='#C92121';
 <!-- scroll to the bottom of the page -->
 document.getElementById('sidechatlog').scrollTop = 9999999;
 <% end %>
@@ -19,5 +19,5 @@ document.getElementById('sidechatlog').scrollTop = 9999999;
 $("#sidechat_submit")[0].reset();
 $('#sidechatinput').focus();
 <% publish_to @partnersubscribe do %>
-	document.getElementById('sidechatclose').style.background-color='#428BCA';
+	document.getElementById('sidechattoggle').style.backgroundColor='#428BCA';
 <% end %>
