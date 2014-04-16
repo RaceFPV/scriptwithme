@@ -20,8 +20,12 @@
   </ul>
 </nav>
 
-<%= render partial: 'layouts/nav_socialmedia' %>
 
+    <!-- for user online count -->
+    <% @online = User.online? %>
+    <% if @online > 1 %>
+      <p style="float: right"><%= User.online? %> writers online</p>
+    <% end %>
 
 <!-- system wide alert -->
 <div  id="alertmessagecontainer">

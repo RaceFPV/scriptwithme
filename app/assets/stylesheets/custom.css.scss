@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+
+//set min width/height for mobile
 html {
   height: 100%;
   width: 100%;
@@ -7,6 +9,7 @@ html {
   min-width: 768px;
 }
 
+//for the leather background effect
 body {
   margin: 0;
   padding-top: 90px;
@@ -15,9 +18,35 @@ body {
   background-repeat:repeat;
  }
 
- .container {
-   min-width: 768px;
-}
+//for the home page ribbon
+.ribbon {
+	position: relative;
+	width: 70%;
+	font-size: 1.6em;
+	font-weight: bold;
+	padding: 6px 20px 6px 70px;
+	margin: 10px 10px 10px -37px;
+	color: #eaeaea;
+	background-color: #333;
+  text-shadow: 0px 1px 0px #666;
+	-webkit-box-shadow: 0px 2px 7px #4a4a4a;
+	-moz-box-shadow: 0px 2px 7px #4a4a4a;
+	box-shadow: 0px 2px 7px #4a4a4a;
+    }
+
+.ribbon:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+	top: 100%;
+	border-width: 3px 6px;
+	border-style: solid;
+	border-color: #4a4a4a #4a4a4a transparent transparent;
+    }
+
+
 
 
 .badge{

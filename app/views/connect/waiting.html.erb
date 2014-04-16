@@ -1,3 +1,6 @@
+<div class="ribbon-wrapper-green">
+<div class="ribbon-green">JOIN</div>
+</div>
 <!-- tell private_pub to listen on the waiting page -->
 <%= subscribe_to "/scenes/#{@scene.id}/waiting" %>
 
@@ -11,12 +14,12 @@
 </script>
 
 <!-- start of main waiting page -->
-<h1> Waiting for your co-writer </h1>
+<h1 align="center"> Waiting for your co-writer </h1>
 
-<p> Invite him / her to join you at this url: </p>
+<p align="center"> Invite him / her to join you at this url: </p>
 
 <!-- allow user to invite a friend by providing a join url-->
-<div class="well well-small">
+<div class="well well-small" align="center" style="width: 50%;margin-left: 25%;">
   <%= link_to @join_url, @scene %>
 </div>
 <!-- end main waiting page -->

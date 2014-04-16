@@ -1,3 +1,6 @@
+<div class="ribbon-wrapper-green">
+<div class="ribbon-green">JOIN</div>
+</div>
 <p class="introduce centered-text" style="padding-top: 30px; font-size:24px;">
   Scriptwith.me lets you write a script or story with anyone.
 </p>
@@ -20,8 +23,7 @@
 <div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-top: 10%;">
 	<div class="ibl" align="center">
     	<h3> To join give your character a name: </h3>
-    	<%= image_tag "usericon-small.png", :alt => "usericon", style: 'height:100px; width:100px; margin-top:-27px; margin-left:-120px;', align: 'left' %> 
-    	<%= form_for :join do |f| %>
+        <%= form_for :join do |f| %>
     		<div class="input-group" style="margin-top:5px;margin-bottom:-15px;width: 100%;max-width:305px;">
         		<%= f.text_field :character, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Bobby', autofocus: true %>
         		<span class="input-group-btn">
