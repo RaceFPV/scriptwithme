@@ -1,5 +1,8 @@
+<div class="ribbon-wrapper-green">
+<div class="ribbon-green">FRIENDS</div>
+</div>
 <!-- user pages navbar if this is our own profile-->
-<ul class="nav nav-pills" style="margin-bottom: 25px;margin-top: -40px;">
+<ul class="nav nav-pills" style="margin-bottom: 25px;">
   <li><%= link_to "Home", home_path(@user_path(@user.name) %></li>
   <li><%= link_to "Browse Live Scenes", live_index_path(@user.name) %></li>
   <li class="active"><%= link_to "Friends", friends_user_path(@user.name) %></li>

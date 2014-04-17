@@ -1,4 +1,7 @@
-<ul class="nav nav-pills " style="margin-bottom: 25px;margin-top: -40px;">
+<div class="ribbon-wrapper-green">
+<div class="ribbon-green">SAVED</div>
+</div>
+<ul class="nav nav-pills " style="margin-bottom: 25px;">
   <li><%= link_to "Home", home_path(@user.name) %></li>
     <li class="active"><%= link_to "Saved Scipts", saved_user_path(@user.name) %></li>
     <li><%= link_to "Profile", user_profile_path(@user.name) %></li>
