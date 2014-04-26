@@ -50,7 +50,7 @@ end
   end
   
   def self.friends?(user_id)
-    myfriends = Friends.where('user_id == ?', "#{user_id}") rescue nil
+    myfriends = Friends.where('user_id = ?', "#{user_id}") rescue nil
     myfriendsfinal = []
     myfriends.each do |x|
       myfriendsfinal << User.find_by_name(x.friend)
@@ -61,7 +61,7 @@ end
   #get an array list of all friends that have been active in the past five minutes
   def self.allfriendsonline?(user_id)
     #get my list of friends
-    myfriends = Friends.where('user_id == ?', user_id) rescue nil
+    myfriends = Friends.where('user_id = ?', user_id) rescue nil
     if myfriends == nil
       return nil
     end

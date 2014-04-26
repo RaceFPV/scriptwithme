@@ -209,11 +209,11 @@ class UsersController < ApplicationController
 
   def addfriend
     #make sure we can't add users that don't exist, or add ourselves as a friend, or add a blank/nil name
-    if User.where("name == ?", params[:addfriend][:friendname]) == nil or params[:addfriend][:friendname] == User.find_by_name(params[:id]) or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
+    if User.where("name = ?", params[:addfriend][:friendname]) == nil or params[:addfriend][:friendname] == User.find_by_name(params[:id]) or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
       puts "friend doesn't exist or is self"
       return render 'layouts/friends/error.js.erb'
     end
-    if User.where("user_id == ? AND friend == ?", params[:id], params[:addfriend][:friendname]) != nil
+    if User.where("user_id = ? AND friend = ?", params[:id], params[:addfriend][:friendname]) != nil
       puts "friend already added"
       return render 'layouts/friends/error.js.erb'
     end
