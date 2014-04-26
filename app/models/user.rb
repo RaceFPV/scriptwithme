@@ -50,7 +50,7 @@ end
   end
   
   def self.friends?(user_id)
-    myfriends = Friends.where('user_id LIKE ?', "#{user_id}") rescue nil
+    myfriends = Friends.where('user_id = ?', "#{user_id}") rescue nil
     myfriendsfinal = []
     myfriends.each do |x|
       myfriendsfinal << User.find_by_name(x.friend)
