@@ -17,6 +17,9 @@
 <% end %>
 
   <body>
+    <% if signed_in? %>
+      <%= render partial: 'layouts/friends/addfriend' %>
+    <% end %>
     <header class="navbar navbar-inverse navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">

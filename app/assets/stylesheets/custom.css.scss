@@ -238,6 +238,13 @@ a.list-group-item:hover {
   border:1px solid black;
 }
 
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    
+ background-color: transparent;
+    border-color: transparent;
+  color: #428BCA;
+}
+
 
 .navdropdown {
   color: rgb(236, 236, 236);
@@ -251,10 +258,12 @@ a.list-group-item:hover {
 .navdropdown:hover {
   text-decoration: none;
   color: rgb(200, 200, 200);
+ background-color: transparent;
 }
 .navdropdown:focus {
   text-decoration: none;
   color: rgb(200, 200, 200);
+ background-color: transparent;
 }
 
 .signin-link {

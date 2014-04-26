@@ -59,7 +59,7 @@ Scriptwithme::Application.routes.draw do
   match  '/users/:id/noadmin/:user', to: 'users#noadmin', via: 'get', as: :noadmin
   match  '/users/:id/starters', to: 'users#starters', via: 'get', as: :starters
   match  '/users/:id/starters/save', to: 'users#savestarter', via: 'post', as: :savestarter
-  match  '/users/:id/addfriend/', to: 'users#addfriend', via: 'get', as: :addfriend
+  match  '/users/:id/addfriend/', to: 'users#addfriend', via: 'post', as: :addfriend
   match  '/users/:id/sendalert', to: 'users#sendalert', via: 'post', as: :sendalert
   
   #generate routes for users

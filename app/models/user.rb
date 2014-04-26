@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :characters
   has_many :scenes, through: :characters
-  has_many :messages#, dependent: :destroy
-  has_many :friends#, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :friends, dependent: :destroy
   validates :name, uniqueness: true #make sure each users name is unique
   validates_length_of :name, :minimum => 3, :maximum => 30
   serialize :rating
@@ -49,27 +49,29 @@ end
     end
   end
   
+  def self.friends?(user_id)
+    myfriends = Friends.where('user_id == ?', "#{user_id}") rescue nil
+    myfriendsfinal = []
+    myfriends.each do |x|
+      myfriendsfinal << User.find_by_name(x.friend)
+    end
+    return myfriendsfinal
+  end
+  
   #get an array list of all friends that have been active in the past five minutes
   def self.allfriendsonline?(user_id)
-    #get a list of all online users
-    everyoneonline = User.where('updated_at >= ?', 5.minutes.ago)
     #get my list of friends
-    me = User.find(user_id)
-    myfriends = me.friends.all rescue nil
+    myfriends = Friends.where('user_id == ?', user_id) rescue nil
     if myfriends == nil
       return nil
     end
     #set a variable to hold the final list
     friendsonline = []
-    #go through the list of online users
-    everyoneonline.each do |x|
-      #go through the list of my friends
-      myfriends.each do |y|
-        #if my friends name matches the users name
-        if x.name == y.friend
+    #go through the list of friends
+    myfriends.each do |x|
+      if x.updated_at >= 5.minutes.ago
           #add them to the list
           friendsonline << x
-        end
       end
     end
    return friendsonline

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140210161533) do
   add_index "characters", ["scene_id"], name: "index_characters_on_scene_id"
 
   create_table "friends", force: true do |t|
-    t.integer  "user_id"
+    t.string  "user_id"
     t.string   "friend"
     t.datetime "created_at"
     t.datetime "updated_at"

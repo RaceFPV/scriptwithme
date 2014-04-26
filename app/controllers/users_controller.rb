@@ -208,7 +208,25 @@ class UsersController < ApplicationController
   end
 
   def addfriend
-    render 'users/addfriend.js.erb'
+    #make sure we can't add users that don't exist, or add ourselves as a friend, or add a blank/nil name
+    if User.where("name == ?", params[:addfriend][:friendname]) == nil or params[:addfriend][:friendname] == User.find_by_name(params[:id]) or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
+      puts "friend doesn't exist or is self"
+      return render 'layouts/friends/error.js.erb'
+    end
+    if User.where("user_id == ? AND friend == ?", params[:id], params[:addfriend][:friendname]) != nil
+      puts "friend already added"
+      return render 'layouts/friends/error.js.erb'
+    end
+    user = User.find_by_name(params[:id])
+    newfriend = Friends.new
+    newfriend[:user_id] = params[:id]
+    newfriend[:friend] = params[:addfriend][:friendname]
+    if newfriend.save
+      return render 'layouts/friends/added.js.erb'
+    else
+      puts "error saving friend"
+      return render 'layouts/friends/error.js.erb'
+    end
   end
 
   #for user sign_out
