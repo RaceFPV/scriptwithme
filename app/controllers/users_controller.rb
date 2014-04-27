@@ -229,6 +229,46 @@ if User.where("user_id = ? AND friend = ?", "#{params[:id]}", "#{params[:addfrie
     end
   end
 
+def sendmessage
+    #make sure we can't add users that don't exist, or add ourselves as a friend, or add a blank/nil name
+  if User.where("name = ?", "#{params[:sendmessage][:friendname]}") == nil or params[:sendmessage][:friendname] == User.find_by_name(params[:id]) or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
+      puts "friend doesn't exist or is self"
+      return render 'layouts/messages/senderror.js.erb'
+    end
+if params[:sendmessage][:message] == nil or params[:sendmessage][:message] == ""
+  puts "blank message"
+  return render 'layouts/messages/senderror.js.erb'
+end
+    user = User.find_by_name(params[:id])
+friend = User.find_by_name(params[:sendmessage][:friendname])
+newmessage = Messages.new
+newmessage[:user_id] = friend.name
+newmessage[:from] = user.name
+newmessage[:content] = params[:sendmessage][:message]
+newmessage[:read] = false
+if newmessage.save
+      return render 'layouts/messages/sendsuccess.js.erb'
+    else
+  puts "error saving message"
+      return render 'layouts/messages/senderror.js.erb'
+    end
+  end
+
+def message
+  user = User.find_by_name(params[:id])
+  message = Messages.find_by_id(params[:messageid])
+  message[:read] = true
+  message.save!
+  @content = message.content
+  @from = message.from
+end
+
+def messages
+  user = User.find_by_name(params[:id])
+  @messages = User.messages?(user.name)
+end
+
+
   #for user sign_out
 	def destroy
 		User.find_by_name(params[:id]).destroy

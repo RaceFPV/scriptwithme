@@ -1,0 +1,11 @@
+<div class="list-group">
+<% @messages.each do |x| %>
+  <%= link_to message_path(current_user.name, x.id), class: "list-group-item" do %>
+  <h4 class="list-group-item-heading">
+    From: <%= x.from %>
+  </h4>
+  <p class="list-group-item-text">
+  <%= x.content %>
+  </p>
+  <% end %>
+<% end %>

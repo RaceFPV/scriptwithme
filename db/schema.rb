@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140210161533) do
   add_index "lines", ["character_id"], name: "index_lines_on_character_id"
 
   create_table "messages", force: true do |t|
-    t.integer  "user_id"
+    t.string  "user_id"
     t.string   "from"
     t.string   "title"
     t.text     "content"

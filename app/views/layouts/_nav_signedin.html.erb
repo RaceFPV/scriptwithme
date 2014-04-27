@@ -1,18 +1,28 @@
 <div class="dropdown" style="width: 30px;margin-top: 14px;float: left;margin-left: 15px;margin-right: 15px;">
 	<a href="#" class="dropdown-toggle navdropdown" data-toggle="dropdown" data-target="#" style="margin-top: 10px">
-    <span class="glyphicon glyphicon-envelope clickable" style="width: 20px;font-size: 25px;"></span>
+    <% if User.unreadmessages?(current_user.name) == true %>
+      <span class="glyphicon glyphicon-envelope clickable" style="width: 20px;font-size: 25px; color: red;"></span>
+    <% else %>
+      <span class="glyphicon glyphicon-envelope clickable" style="width: 20px;font-size: 25px;"></span>
+    <% end %>
 	</a>
 	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-		<% @mymessages = current_user.messages.all rescue nil%>
-		<% if @mymessages != nil %>
+		<% @mymessages = User.messages?(current_user.name).limit(6) %>
+		<% if @mymessages != nil and !@mymessages.empty? %>
  	   		<% @mymessages.each do |x| %>
- 	   			<li><%= link_to x.title x, role: 'menuitem' %></li>
+          <% if x != nil %>
+    <li role="menuitem"><%= link_to message_path(current_user.name, x.id), style: "height: 22px;" do %><span style="float: left"><%= x.from %></span><% if x.read == false %><span style="float: right" class="label label-success">New</span><% else %><span style="float: right" class="label label-default">Old</span><% end %><% end %></li>
  	   		<% end %>
-			<li class="divider"></li>
-			<li><a role="menuitem" tabindex="-1" href="#">All messages</a></li>
+        <% end %>
+    <li class="divider"></li>
+			<li role="menuitem"><%= link_to "All messages", messages_path(current_user.name) %></li>
  	   <% else %>
  	   		<li align="center">No messages</li>
  	   <% end %>
+     <li class="divider"></li>
+ 	   <li>	<a href="#" class="addfriend" id="sendmessageid" data-toggle="modal" data-target="#sendmessage">
+      Send a message
+	</a></li>
 	</ul>
 </div>
 

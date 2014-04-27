@@ -77,6 +77,20 @@ end
    return friendsonline
   end
   
+  def self.messages?(user_id)
+    mymessages = Messages.where('user_id = ?', "#{user_id}").order('created_at DESC') rescue nil
+    return mymessages
+  end
+  
+  def self.unreadmessages?(user_id)
+    mymessages = Messages.where('user_id = ? AND read = ?', "#{user_id}", false).order('created_at DESC') rescue nil
+    if mymessages.count != 0
+      return true
+    else
+      return false
+    end
+  end
+  
   #check if a user has been in more than 15 scenes when provided with their user_id
   #return true or false
   def self.starter?(user_id)
