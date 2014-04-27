@@ -60,7 +60,11 @@ Scriptwithme::Application.routes.draw do
   match  '/users/:id/starters', to: 'users#starters', via: 'get', as: :starters
   match  '/users/:id/starters/save', to: 'users#savestarter', via: 'post', as: :savestarter
   match  '/users/:id/addfriend/', to: 'users#addfriend', via: 'post', as: :addfriend
+  match  '/users/:id/addfriend/:friend', to: 'users#addfriend2', via: 'get', as: :addfriend2
+  match  '/users/:id/unfriend/:friend', to: 'users#unfriend', via: 'get', as: :unfriend
   match  '/users/:id/sendmessage/', to: 'users#sendmessage', via: 'post', as: :sendmessage
+  match  '/users/:id/sendmessage/:sendto', to: 'users#sendmessage2', via: 'get', as: :sendmessage2
+  match  '/users/:id/sendmessage/:sendto', to: 'users#sendmessage3', via: 'post', as: :sendmessage3
   match  '/users/:id/message/:messageid', to: 'users#message', via: 'get', as: :message
   match  '/users/:id/messages', to: 'users#messages', via: 'get', as: :messages
   match  '/users/:id/sendalert', to: 'users#sendalert', via: 'post', as: :sendalert

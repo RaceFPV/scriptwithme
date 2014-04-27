@@ -1,0 +1,12 @@
+        <h3 class="title centered-text">
+          Send a message to <%= params[:sendto] %>
+        </h3>
+<br/><br/>
+<%= form_for :sendmessage3, url: sendmessage3_path(params[:id], params[:sendto]), class: 'clearfix' do |f| %>
+<div style="width: 70%; margin-left: 15%;" align="center">
+          <%= f.label "Enter your message" %>
+          <%= f.text_area :message, class: 'form-control', style: 'background: rgba(255, 255, 255, .5);', :autocomplete => :off %>
+  <br/>        
+  <%= f.submit 'Send', disable_with: 'Sending…', id: 'sendmessagesubmit', class: 'btn btn-default btn-block robofont', style: 'height: 34px;background: rgba(255, 255, 255, .5); width: 50%;' %>
+</div>
+            <% end %>

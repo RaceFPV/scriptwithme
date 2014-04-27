@@ -229,6 +229,44 @@ class UsersController < ApplicationController
     end
   end
 
+  def addfriend2
+    #make sure we can't add users that don't exist, or add ourselves as a friend, or add a blank/nil name
+    if User.where("name = ?", "#{params[:friend]}") == nil or params[:friend] == params[:id] or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
+      flash[:error] = "Error friending #{params[:friend]}"
+      return redirect_to scene_scripts_path(params[:friend])
+    end
+    if Friends.where("user_id = ? AND friend = ?", "#{params[:id]}", "#{params[:friend]}").count > 0
+      flash[:error] = "Error friending #{params[:friend]}, already added"
+      return redirect_to scene_scripts_path(params[:friend])
+    end
+    user = User.find_by_name(params[:id])
+    newfriend = Friends.new
+    newfriend[:user_id] = params[:id]
+    newfriend[:friend] = params[:friend]
+    if newfriend.save
+      flash[:success] = "Friended #{params[:friend]}"
+      return redirect_to scene_scripts_path(params[:friend])
+    else
+      flash[:error] = "Error friending #{params[:friend]}"
+      return redirect_to scene_scripts_path(params[:friend])
+    end
+  end
+
+def unfriend
+  friend = Friends.where('user_id = ? AND friend = ?', params[:id], params[:friend]).first rescue nil
+  if friend == nil
+    flash[:error] = "Error unfriending #{params[:friend]}"
+    return redirect_to scene_scripts_path(params[:friend])
+  end
+  if friend.destroy
+    flash[:success] = "Unfriended #{params[:friend]}"
+    return redirect_to scene_scripts_path(params[:friend])
+  else
+    flash[:error] = "Error unfriending #{params[:friend]}"
+    return redirect_to scene_scripts_path(params[:friend])
+  end
+end
+
 def sendmessage
     #make sure we can't add users that don't exist, or add ourselves as a friend, or add a blank/nil name
   if User.where("name = ?", "#{params[:sendmessage][:friendname]}") == nil or params[:sendmessage][:friendname] == User.find_by_name(params[:id]) or User.find_by_name(params[:id]) == nil or User.find_by_name(params[:id]) == ""
@@ -253,6 +291,29 @@ if newmessage.save
       return render 'layouts/messages/senderror.js.erb'
     end
   end
+
+def sendmessage2
+  user = User.find_by_name(params[:id])
+  friend = User.find_by_name(params[:sendto])
+end
+
+def sendmessage3
+  user = User.find_by_name(params[:id])
+  friend = User.find_by_name(params[:sendto])
+  newmessage = Messages.new
+newmessage[:user_id] = friend.name
+newmessage[:from] = user.name
+newmessage[:content] = params[:sendmessage3][:message]
+newmessage[:read] = false
+if newmessage.save
+  flash[:success] = "Sent message to #{params[:sendto]}"
+    return redirect_to scene_scripts_path(params[:sendto])
+    else
+  flash[:error] = "Failed to message #{params[:sendto]}"
+    return redirect_to scene_scripts_path(params[:sendto])
+    end
+end
+
 
 def message
   user = User.find_by_name(params[:id])

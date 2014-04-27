@@ -58,6 +58,15 @@ end
     return myfriendsfinal
   end
   
+  def self.isfriend?(user_id, friend)
+    friend = Friends.where('user_id = ? AND friend = ?', "#{user_id}", "#{friend}")
+    if friend.count > 0
+      return true
+    else
+      return false
+    end
+  end
+  
   #get an array list of all friends that have been active in the past five minutes
   def self.allfriendsonline?(user_id)
     #get my list of friends

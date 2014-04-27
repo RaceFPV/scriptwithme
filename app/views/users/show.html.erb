@@ -74,4 +74,12 @@
     </div>
   </div>
 </div>
+  <% if signed_in? %>
+    <% if User.isfriend?(current_user.name, params[:id]) == true %>
+      <%= link_to "Unfriend", unfriend_path(current_user.name, params[:id]), class: "btn btn-danger", style: "float: right; color: black;" %>
+    <% else %>
+      <%= link_to "Add friend", addfriend2_path(current_user.name, params[:id]), class: "btn btn-success", style: "float: right; color: black;" %>
+    <% end %>
+  <%= link_to "Message", sendmessage2_path(current_user.name, params[:id]), class: "btn btn-primary", style: "float: right; color: black; margin-right: 20px;" %>
+  <% end %>
 </div>
