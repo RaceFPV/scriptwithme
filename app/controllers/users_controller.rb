@@ -213,7 +213,7 @@ class UsersController < ApplicationController
       puts "friend doesn't exist or is self"
       return render 'layouts/friends/error.js.erb'
     end
-if User.where("user_id = ? AND friend = ?", "#{params[:id]}", "#{params[:addfriend][:friendname]}") != nil
+    if Friends.where("user_id = ? AND friend = ?", "#{params[:id]}", "#{params[:addfriend][:friendname]}").count > 0
       puts "friend already added"
       return render 'layouts/friends/error.js.erb'
     end
