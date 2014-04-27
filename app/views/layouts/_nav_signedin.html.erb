@@ -36,9 +36,9 @@
 			<% myfriends.each do |x| %>
         <% if x != nil %>
           <% if User.friendonline?(x.name) == true %>
-    <li role="menuitem"><%= link_to x do %><span style="float: left"><%= x.name %></span><span style="float: right" class="label label-success">Online</span><% end %></li>
+    <li role="menuitem"><%= link_to x, style: "height: 22px;" do %><span style="float: left"><%= x.name %></span><span style="float: right" class="label label-success">Online</span><% end %></li>
           <% else %>
-    <li role="menuitem"><%= link_to x do %><span style="float: left"><%= x.name %></span><span style="float: right" class="label label-default">Offline</span><% end %></li>
+    <li role="menuitem"><%= link_to x, style: "height: 22px;" do %><span style="float: left"><%= x.name %></span><span style="float: right" class="label label-default">Offline</span><% end %></li>
           <% end %>
         <% end %>
 			<% end %>
