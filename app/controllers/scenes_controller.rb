@@ -171,6 +171,45 @@ end
     end
   end
 
+def start_new_scene_invite
+    #create the new scene
+    @scene = Scene.new(params[:scene])
+    #find a scene starter to use
+    @starter = Starter.find(Starter.pluck(:id).sample)
+    #tie the starter title to the scene title
+    @scene[:title] = @starter.title
+    #tie the starter content to the scene starter
+    @scene[:starter] = @starter.content
+    #create the scene character
+    @characterme = @scene.characters.new
+    #associate the character name to the name from the field the user entered
+    session[:user] = params[:invite][:character]
+    @characterme[:nickname] = params[:invite][:character]
+    @characterme[:user_id] = current_character_hash[:user_id]
+    puts "saving new scene for user #{session[:user_id]}"
+       
+
+  #save the newly created scene and character and messsage
+if @scene.save & @characterme.save
+  #send the invite message
+user = User.find_by_name(current_user.name)
+newmessage = Messages.new
+newmessage[:user_id] = params[:invite][:friend]
+newmessage[:from] = "#{user.name} - invite"
+  newmessage[:content] = "#{user.name} has invited you to start a new script, #{view_context.link_to('click here to accept!', join_path(@scene.id))}"
+newmessage[:read] = false
+  if newmessage.save
+  flash[:success] = "Sent invite to #{params[:invite][:friend]}"
+return redirect_to waiting_invite_path(@scene.id, params[:invite][:friend])
+else
+  return redirect_to root_path, :flash => {:error => "Error sending invite message"}
+end
+    else
+return redirect_to root_path, :flash => {:error => "Error creating invite scene"}
+    end
+  end
+
+
   def waiting_random
     @scene = Scene.find(params[:id])
     

@@ -14,6 +14,7 @@ Scriptwithme::Application.routes.draw do
   #routes while in a scene
   match  '/scenes/:id/quit', to: 'sessions#destroy', via: 'delete', as: :end_scene
   match  '/scenes/start-new-scene', to: 'scenes#start_new_scene', via: 'post', as: :start_new_scene
+  match  '/scenes/start-new-scene-invite', to: 'scenes#start_new_scene_invite', via: 'post', as: :start_new_scene_invite
   match  '/scenes/:id/save', to: 'scenes#save_name', via: 'put', as: :save_scene_name
   match  '/scenes/:id/save', to: 'scenes#savescene', via: 'post', as: :savescene
   match  '/scenes/saved/:id', to: 'scenes#savedscene', via: 'get', as: :savedscene
@@ -30,7 +31,10 @@ Scriptwithme::Application.routes.draw do
   match  '/connect/random-connect', to: 'connect#random_connect', via: 'get', as: :random_connect
   match  '/connect/waiting-partner', to: 'connect#waiting_random_partner', via: 'post', as: :waiting_random_partner
   match  '/connect/giveup', to: 'connect#giveup', via: 'get', as: :giveup
+  match  '/connect/:id/invite/:friend', to: 'connect#invitefriend', via: 'get', as: :invite
+  match  '/connect/:id/invite/', to: 'connect#invitefriend', via: 'post', as: :invite2
   match  '/scenes/:id/waiting', to: 'connect#waiting', via: 'get', as: :waiting
+  match  '/scenes/:id/waitinginvite/:friend', to: 'connect#waiting_invite', via: 'get', as: :waiting_invite
   
   #routes for messages using faye/private_pub
   match  '/messages/:id/leftscene', to: 'messages#leftscene', via: 'get', as: :leftscene

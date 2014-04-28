@@ -65,8 +65,27 @@ class ConnectController < ApplicationController
       return render :json => {:scene_url => scene_path(:id => @scene.id)}
     end
   end
-  
-  # When user leaves the waiting random partner page without connecting to someone else (they closed their browser etc)
+
+  def waiting_invite
+    @scene = Scene.find(params[:id])
+    #generate the url that allows the friend to join
+    @join_url = join_url(@scene)
+    @start_url = scene_url(@scene)
+    @friend = User.find_by_name(params[:friend])
+    puts "waiting for #{params[:friend]}, our user_id is #{session[:user_id]}"
+    #if partner joins, send us into the scene
+    if @scene.characters.count > 1
+      return render :json => {:scene_url => scene_path(:id => @scene.id)}
+    end
+  end
+
+
+  def invitefriend
+    @me = User.find_by_name(current_user.name)
+    @friend = User.find_by_name(params[:friend])
+  end
+
+# When user leaves the waiting random partner page without connecting to someone else (they closed their browser etc)
 # remove them from the queue system
   def giveup
     @@lock.synchronize do

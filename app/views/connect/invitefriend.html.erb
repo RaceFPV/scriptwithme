@@ -1,0 +1,25 @@
+<div class="ribbon-wrapper-green">
+<div class="ribbon-green">INVITE</div>
+</div>
+
+<div class="centered-text">
+  <h3>
+    You will be inviting <%= link_to @friend.name, @friend %> to help write a script
+  </h3>
+</div>
+
+<!-- form for new character name and scene start -->
+<div class="introduce form-wrapper start-the-scene-form centered-text" style="margin-bottom: 7%;margin-top: 3%;">
+	<div class="ibl" align="center">
+    	<h3> First you need to name your character: </h3>
+      <%= form_for :invite, url: start_new_scene_invite_path do |f| %>
+      <%= f.hidden_field :friend, :value => @friend.name %>
+    		<div class="input-group" style="margin-top:5px;margin-bottom:-15px;width: 100%;max-width:305px;">
+        		<%= f.text_field :character, class: "form-control centered-text", style: "font-size:22px;" , placeholder: 'eg. Bobby', autofocus: true %>
+        		<span class="input-group-btn">
+        			<%= f.submit 'Go', class: 'btn btn-default', style: 'height: 34px;' %>
+     			</span>
+      		</div>
+    	<% end %>
+  	</div>
+</div>

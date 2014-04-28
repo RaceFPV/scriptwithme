@@ -149,6 +149,7 @@ class SessionsController < ApplicationController
       return redirect_to root_path, :flash => {:error => "Error joining"}
     end
   end
+
   
   #kill the user session and close the scene
   def destroy
