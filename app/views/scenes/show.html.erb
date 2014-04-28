@@ -37,10 +37,6 @@
 		</div>
 </header>
 
-<!-- for the OOC sidechat popout -->
-<%= render 'sidechats/sidechat' %>
-
-
 <!-- scene has ended modal that appears after user ends scene -->
 <!-- check if the user is signed in so we know which modal to show them -->
 <% if signed_in? %>
@@ -48,6 +44,9 @@
 <% else %>
 	<%= render 'scenes/scene_end' %>
 <% end %>
+
+<!-- for the OOC sidechat popout -->
+<%= render 'sidechats/sidechat' %>
 
 
 
