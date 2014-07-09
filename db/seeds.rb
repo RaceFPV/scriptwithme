@@ -8,12 +8,16 @@
 
 scene_starters = [
   {
-    title: %q[Title goes here],
-    content: %q[{{X}} {{Y}} description goes here.]
+    title: %q[EXTERIOR - Old Castle Grounds],
+    content: %q[{{X}} slowly walks the grounds of his castle, his crown and clothing shining in the sunlight. Suddenly {{Y}} comes riding up on his noble steed, stopping {{X}} in his steps. {{Y}} appears very out of breath] 
   },
   {
-    title: %q[Title goes here],
-    content: %q[{{X}} {{Y}} description goes here.]
+    title: %q[NIGHT -- Cabin],
+    content: %q[{{X}} sleeps on a tattered armchair in the corner. The last embers smolder in the fireplace as the room darkens. Outside the wind howls as a barren tree taps on the window. {{Y}} runs into the room and jolts {{X}} awake.]
+    },
+  {
+    title: %q[INTERIOR -- School],
+    content: %q[{{X}} writes on the chalkboard, the class behind them. It's almost time for the class to end, when {{X}} feels something hit them in the back of the head. Whirling around, {{X}} sees {{Y}} trying to look innocent at the back of the room.] 
     }
 ]
 
