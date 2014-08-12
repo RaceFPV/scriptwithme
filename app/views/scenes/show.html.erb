@@ -68,10 +68,7 @@
 
 <!-- Button to end the scene -->
 <div id="endbuttons" style="display: inherit;">
-<button class="btn btn-default" id="endareyousure" style="display: inherit">
-  <strong>End Scene</strong>
-</button>
-  <%= link_to "You Sure?", endscene_path(@scene), class: "btn btn-primary", id: "endscene1", style: "display: none", remote: true %>
+  <%= link_to "End Scene?", endscene_path(@scene), class: "btn btn-primary", id: "endscene1", style: "display: none", remote: true, confirm: "Are you sure?" %>
 </div>
 <!-- end button to end scene -->
 
@@ -88,25 +85,6 @@
 <% else %>
 	<%= render 'scenes/scene_end' %>
 <% end %>
-<!-- script to trigger scene has ended buttons -->
-<script type="text/javascript">
-  var endscene = "<%= endscene_path(@scene) %>";
-  //add an 'are you sure' prompt when user tries to end scene
-  $("#endareyousure").on('click', function() {
-  document.getElementById('endareyousure').style.display= 'none';
-  document.getElementById('endscene1').style.display = 'inherit'; 
-  });
-  //if user clicks that they are sure, end the scene
-$("#endscene1").on('click', function() {
-//send a notice to the other user that the scene has ended and display the _scene_end modal
-//that prompts the user to save or sign up
-  $.ajax({
-            url: endscene,
-            type: "get",
-          });
-});
-</script>
-
 <!-- script for active polling to make sure partner is present -->
 <script>
 // set the path variables
