@@ -1,7 +1,7 @@
 <!-- check what kind of line this is and display it appropriately -->
 <% @lineid = "#{@line.id}"%>
 <% if @line.kind == "Say" %>
-  <% if @lastnickname != nil and session[:user] == @lastnickname %>
+<% if @lastnickname != nil and session[:user] == @lastnickname and @lastline.kind == "Say" %>
     <p class="sayline" style="margin-top:-25px;" id=<%= @lineid %>>
       <span class="line"> <%= @line.content %></span>
      </p>

@@ -83,7 +83,9 @@
      @linecount = @scene.lines.count rescue 0
       if @linecount != 0
         @lastnickname = @scene.lines.last.nickname
+        @lastline = @scene.lines.last
       else
+        @lastline = nil
         @lastnickname = nil
       end
     #create a new line row and use the drop_a_line params

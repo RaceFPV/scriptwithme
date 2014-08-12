@@ -62,7 +62,7 @@
 <%= render 'scenes/scene_lines' %>
 	
 <!-- form to add a new line, only shown when scene is active -->
-<div align="center" style="padding-bottom: 0px; padding-top: 0px; margin-top: 0px; margin-bottom: 0px;display: inherit;" id="dropline">
+<div align="center" style="display: inherit;" id="dropline">
 <div id="droplinerefresh"></div>
   <%= render 'scenes/drop_a_line' %>
 </div>
@@ -73,7 +73,7 @@
 </div>
 
 <!-- Button to end the scene -->
-<div id="endbuttons" style="display: inherit;margin-top:-20px;margin-left: 85%;">
+<div id="endbuttons" style="display: inherit;">
 <button class="btn btn-default" id="endareyousure" style="display: inherit">
   <strong>End Scene</strong>
 </button>
@@ -87,7 +87,7 @@
 <div align="right" id="leavebutton" style="display: none;margin-top:-20px;margin-left: 85%;">
   <%= link_to "Leave script", root_path, class: "btn btn-default" %>
 </div>
-
+<br/><br/>
 <!-- script to trigger scene has ended buttons -->
 <script type="text/javascript">
   var endscene = "<%= endscene_path(@scene) %>";

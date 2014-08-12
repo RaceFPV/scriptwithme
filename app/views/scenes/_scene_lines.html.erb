@@ -19,7 +19,7 @@
     <% @lineid = line.id.to_s.chomp('?#{@scene.id}')%>
       <!-- check what kind of line this is and display it appropriately -->
       <% if line.kind == "Say" %>
-      	<% if i != 0 and @scene.lines[i-1].nickname == line.nickname %>
+  <% if i != 0 and @scene.lines[i-1].nickname == line.nickname and @scene.lines[i-1].kind == "Say"%>
       		<p class="sayline" style="margin-top:-25px;" id=<%= @lineid %>>
           <span class="line"> <%= line.content %></span>
          </p>
