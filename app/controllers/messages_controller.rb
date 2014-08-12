@@ -164,9 +164,9 @@
 
     #when a user ends the scene, let everyone know
   def endscene
-    @me = current_character_hash[:user_id]
     @scene = Scene.find(params[:id])
     @user = User.find(current_character_hash[:user_id])
+    @me = @user.id
     #find out who our partner is based on their user_id found via their character (used for the partner is typing notification)
     if @scene.characters.first.user_id == current_character_hash[:user_id]
       @partner = User.find(@scene.characters.second.user_id)

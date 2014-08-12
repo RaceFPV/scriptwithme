@@ -28,12 +28,11 @@
 </div>
 
 <script>
-  $( document ).ready(function() {
 $("#sidechatclose").click(function(e) {
 	e.preventDefault();
-	document.getElementById('viewercount').style.backgroundColor='#428BCA';
 	$("#sidechat").toggleClass("active");
   $("#sidechat_submit").toggleClass("active");
+	document.getElementById('viewercount').style.backgroundColor='#428BCA';
   document.getElementById('helptabid').style.display='inherit';
   document.getElementById('viewercount').style.display='inherit';
   document.getElementById('doorbell-button').style.display='inherit';
@@ -41,12 +40,12 @@ $("#sidechatclose").click(function(e) {
 });
 $("#sidechattoggle").click(function(e) {
 	e.preventDefault();
+  $("#sidechat_submit").toggleClass("active");
+	$("#sidechat").toggleClass("active");
   document.getElementById('viewercount').style.display='none';
   document.getElementById('sidechattoggle').style.backgroundColor='#428BCA';
-	$("#sidechat").toggleClass("active");
   document.getElementById('helptabid').style.display='none';
   document.getElementById('doorbell-button').style.display='none';
   document.getElementById('scenelive').style.display='none';
-  $("#sidechat_submit").toggleClass("active");
-});});
+});
 </script>
