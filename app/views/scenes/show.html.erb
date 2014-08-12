@@ -71,9 +71,7 @@
 <button class="btn btn-default" id="endareyousure" style="display: inherit">
   <strong>End Scene</strong>
 </button>
-<button class="btn btn-primary" id="endscene1" style="display: none">
-  You Sure?
-</button>
+  <%= link_to "You Sure?", endscene_path(@scene), class: "btn btn-primary", id: "endscene1", style: "display: none", remote: true %>
 </div>
 <!-- end button to end scene -->
 
