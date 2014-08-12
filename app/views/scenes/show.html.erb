@@ -1,10 +1,4 @@
-<!-- scene has ended modal that appears after user ends scene -->
-<!-- check if the user is signed in so we know which modal to show them -->
-<% if signed_in? %>
-	<%= render 'scenes/scene_end_signedin' %>
-<% else %>
-	<%= render 'scenes/scene_end' %>
-<% end %>
+
 
 <div class="ribbon-wrapper-green">
 <div class="ribbon-green">PLAY</div>
@@ -88,6 +82,14 @@
   <%= link_to "Leave script", root_path, class: "btn btn-default" %>
 </div>
 <br/><br/>
+
+<!-- scene has ended modal that appears after user ends scene -->
+<!-- check if the user is signed in so we know which modal to show them -->
+<% if signed_in? %>
+	<%= render 'scenes/scene_end_signedin' %>
+<% else %>
+	<%= render 'scenes/scene_end' %>
+<% end %>
 <!-- script to trigger scene has ended buttons -->
 <script type="text/javascript">
   var endscene = "<%= endscene_path(@scene) %>";
