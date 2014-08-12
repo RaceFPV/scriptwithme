@@ -18,7 +18,12 @@ scene_starters = [
   {
     title: %q[INTERIOR -- School],
     content: %q[{{X}} writes on the chalkboard, the class behind them. It's almost time for the class to end, when {{X}} feels something hit them in the back of the head. Whirling around, {{X}} sees {{Y}} trying to look innocent at the back of the room.] 
+    },
+    {
+    title: %q[INTERIOR -- Hospital],
+    content: %q[{{X}} paces anxiously outside a hospital room, looking back and forth frantically, when {{Y}} comes around the corner with a look of fear on their face.] 
     }
+  
 ]
 
 pbar = ProgressBar.create( title: 'Seed Scene Starters', total: scene_starters.count, format: '%a |%b>>%i| %p%% %t [%c/%C done]')
