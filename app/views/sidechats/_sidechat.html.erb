@@ -10,13 +10,13 @@
         <li class="sidechat-brand"><%= link_to "Sidechat", nil %></li>
     <div id="sidechatlog" style="overflow-y: hidden;background: rgba(255, 255, 255, .5);height:100%;">
 									<div>
-                    <p class="robofont" align="center" style="padding-top:15px;padding-bottom:10px;border-bottom-width: 1px; border-bottom-color: #eaeaea;border-bottom: dotted;">Discuss scene here.</p>
+                    <p class="robofont" align="center" style="padding-top:15px;padding-bottom:10px;border-bottom-width: 1px; border-bottom-color: #eaeaea;border-bottom: dotted;">Discuss scene here.</p>Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.Discuss scene here.
 									</div>
+      <div style="padding-bottom: 108px;"><span>&nbsp;</span></div>
 								</div>
-								
 								<!-- start of the form for adding a new sidechat message -->
 								<%= form_for :sidechatsend, url: sidechatsend_path, :html => { :id => 'sidechat_submit'}, remote: true, class: 'clearfix' do |f| %>
-										<div class="input-group" style="width: 245px;">
+										<div class="input-group" style="width: 245px; z-index: 999;">
                       <%= f.text_field :content, id: 'sidechatinput', class: 'form-control', style: 'background: rgba(255, 255, 255, .5);', :autocomplete => :off %>
 												<span class="input-group-btn">
 													<%= f.submit 'Send', disable_with: 'Sending…', class: 'btn btn-default robofont', style: 'height: 34px;background: rgba(255, 255, 255, .5);' %>
@@ -28,6 +28,7 @@
 </div>
 
 <script>
+  $( document ).ready(function() {
 $("#sidechatclose").click(function(e) {
 	e.preventDefault();
 	document.getElementById('viewercount').style.backgroundColor='#428BCA';
@@ -47,5 +48,5 @@ $("#sidechattoggle").click(function(e) {
   document.getElementById('doorbell-button').style.display='none';
   document.getElementById('scenelive').style.display='none';
   $("#sidechat_submit").toggleClass("active");
-});
+});});
 </script>

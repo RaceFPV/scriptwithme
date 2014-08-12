@@ -22,7 +22,12 @@ scene_starters = [
     {
     title: %q[INTERIOR -- Hospital],
     content: %q[{{X}} paces anxiously outside a hospital room, looking back and forth frantically, when {{Y}} comes around the corner with a look of fear on their face.] 
+    },
+      {
+        title: %q[EXTERIOR NIGHT -- City Street],
+    content: %q[{{X}} comes bolting along the road when they run head first into {{Y}} as they come around the corner, dropping what they were carrying. {{Y}} appears anxious and keeps looking over their shoulder while frantically searching for their dropped package.] 
     }
+
   
 ]
 
