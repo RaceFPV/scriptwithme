@@ -77,8 +77,8 @@ class ApplicationController < ActionController::Base
 
   #generate a guest user with a random username and password based on the current time and a random number
   def create_guest_user
-    username = "guest_#{Time.now.to_i}#{rand(99)}"
-    password = "guest_#{Time.now.to_i}#{rand(99)}"
+    username = "guest_#{Time.now.to_i}#{rand(999)}"
+    password = "guest_#{Time.now.to_i}#{rand(999)}"
 u = User.create(:name => username, :email => "#{username}@scriptwith.me", :password => password)
     if u.save(:validate => false)
       session[:guest_user_id] = u.id
