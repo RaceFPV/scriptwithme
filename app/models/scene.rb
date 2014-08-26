@@ -29,7 +29,7 @@ class Scene < ActiveRecord::Base
   
 #find the first 5 scenes that are currently operating and have been updated in the last 5 minutes
   def self.watchable?
-    watchable = Scene.where("state = ?", "operating") rescue nil
+    watchable = Scene.where("state = ? AND created_at < ?", "operating", 45.minutes.ago) rescue nil
     result = []
     if watchable == nil
       return nil
