@@ -84,7 +84,7 @@ u = User.create(:name => username, :email => "#{username}@scriptwith.me", :passw
       session[:guest_user_id] = u.id
       return u
     else
-      return create_guest_user
+      return 
     end
   end
 
