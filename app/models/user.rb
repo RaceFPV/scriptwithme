@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_length_of :name, :minimum => 3, :maximum => 30
   serialize :rating
 	before_create :create_remember_token #before a user has been created, give them a session cookie
-  #before_save :delete_old_users #before saving the new user, prune the database of old users
+  before_save :delete_old_users #before saving the new user, prune the database of old users
   attr_accessor :scriptname, :password #no longer used?????
 
   def slug # Convert user's name to friently url format
@@ -165,7 +165,7 @@ end
     delete = User.where('updated_at <= ? AND created_at <= ? AND email LIKE ?', 1.days.ago, 2.days.ago, "%guest%") rescue nil
     if delete != nil
       delete.each do |x|
-       x.destroy rescue nil
+        x.delete
       end
     end
   end
