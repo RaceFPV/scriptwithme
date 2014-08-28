@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_length_of :name, :minimum => 3, :maximum => 30
   serialize :rating
 	before_create :create_remember_token #before a user has been created, give them a session cookie
-  before_save :delete_old_users #before saving the new user, prune the database of old users
+  #before_save :delete_old_users #before saving the new user, prune the database of old users
   attr_accessor :scriptname, :password #no longer used?????
 
   def slug # Convert user's name to friently url format
