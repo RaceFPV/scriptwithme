@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     #put the current users session id in the console for debugging purposes
     puts "session id: #{session.id}"
     puts "hash id: #{current_character_hash[:user_id]}"
-    #session[:user_id] = current_character_hash[:user_id]
+    session[:user_id] = current_character_hash[:user_id]
     puts "user id: #{session[:user_id]}"
     #used to get most recently used character
     if current_character_hash[:user_id] != nil
