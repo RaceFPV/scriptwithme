@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap
  *= require sessions
  *= require scenes
  *= require custom
@@ -21,3 +20,6 @@
  *= require cornerwrapper
  *= require connect
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
