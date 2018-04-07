@@ -1,4 +1,4 @@
-class CreateStarters < ActiveRecord::Migration
+class CreateStarters < ActiveRecord::Migration[5.1]
   def change
     create_table :starters do |t|
       t.text        :content
@@ -7,7 +7,5 @@ class CreateStarters < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :starters, :scene_id
   end
 end

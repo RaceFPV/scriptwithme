@@ -1,7 +1,7 @@
 class ScenesController < ApplicationController
   include ScenesHelper
-  #FIXME: the skip_before_filter shouldnt be required
-  skip_before_filter  :verify_authenticity_token
+  #FIXME: the skip_before_action shouldnt be required
+  skip_before_action  :verify_authenticity_token
   
   
   #redirect to the proper path based on logged in user or not

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	#FIXME
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   before_action :correct_user, only: [:edit, :home, :friends, :saved, :showprofile, :index]
   before_action :is_admin, only: [:admin, :delete_user, :delete_scene]
 	

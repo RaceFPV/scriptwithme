@@ -1,4 +1,4 @@
-class CreateLines < ActiveRecord::Migration
+class CreateLines < ActiveRecord::Migration[5.1]
   def change
     create_table :lines do |t|
       t.text      :content
@@ -9,7 +9,5 @@ class CreateLines < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :lines, :character_id
   end
 end

@@ -15,6 +15,6 @@ class Character < ActiveRecord::Base
   belongs_to  :user
   has_many    :lines
   default_scope -> {order('created_at ASC')}
-  attr_accessible :nickname, :user_id
+  #attr_accessible :nickname, :user_id
   validates :nickname, presence: true
 end

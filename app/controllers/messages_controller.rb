@@ -1,7 +1,7 @@
  class MessagesController < ApplicationController
   include ScenesHelper
   #FIXME: the skip_before_filter shouldnt be required
-  skip_before_filter  :verify_authenticity_token
+  skip_before_action  :verify_authenticity_token
    
   # ----------- Used for verification that users are still in a scene -----------
   def leftscene
@@ -89,7 +89,7 @@
         @lastnickname = nil
       end
     #create a new line row and use the drop_a_line params
-    @line = Line.new(params[:drop_a_line])
+    @line = Line.new(line_params)
     #set the parameters for the new line
     @line[:nickname] = session[:user]
     @line[:character_id] = current_character_hash[:user_id]
@@ -206,4 +206,13 @@
   render 'scenes/messages/scene_end'
   end
   
+  private
+   
+   
+  def line_params
+    #attr_accessible :content, :kind, :nickname
+    params.permit(:content, :kind, :nickname, :character_id, :scene_id)
+  end
+   
+   
 end

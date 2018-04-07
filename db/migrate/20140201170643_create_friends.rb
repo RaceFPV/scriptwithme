@@ -1,4 +1,4 @@
-class CreateFriends < ActiveRecord::Migration
+class CreateFriends < ActiveRecord::Migration[5.1]
   def change
     create_table :friends do |t|
       t.string :user_id

@@ -1,4 +1,4 @@
-class CreateQueueconnects < ActiveRecord::Migration
+class CreateQueueconnects < ActiveRecord::Migration[5.1]
   def change
     create_table :queueconnects do |t|
       t.integer :userid

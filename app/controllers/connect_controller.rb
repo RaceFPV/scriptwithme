@@ -1,7 +1,7 @@
 class ConnectController < ApplicationController
   include ScenesHelper
   #FIXME: the skip_before_filter shouldnt be required
-  skip_before_filter  :verify_authenticity_token
+  skip_before_action  :verify_authenticity_token
 
   # Page for when a user is waiting for a random partner to connect
   def waiting_random_partner
@@ -93,6 +93,13 @@ class ConnectController < ApplicationController
       puts "user gave up searching"
       end
       render :nothing => true
+  end
+  
+    private
+
+  def character_params
+    #attr_accessible :nickname, :user_id
+    params.require(:character).permit(:nickname, :user_id)
   end
   
   end

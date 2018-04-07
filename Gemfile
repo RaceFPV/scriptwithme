@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.4.1'
 
 group :production do
   gem 'pg' # Heroku database
@@ -7,14 +7,14 @@ group :production do
 end
 
 # Default Rails gems
-gem 'rails'
+gem 'rails', "5.1.6"
 gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails' # Use CoffeeScript for .js.coffee assets and views
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'sass-rails'# Use SCSS for stylesheets
 gem 'bootstrap-sass' # Twitter Bootstrap front-end framework
-gem 'bcrypt-ruby' # To use ActiveModel has_secure_password
+gem 'bcrypt' # To use ActiveModel has_secure_password
 
 
 # Non-default gems
@@ -32,7 +32,7 @@ gem 'jquery-ui-rails' #for easy pagination and searching in admin page
 gem 'responders'
 
 #depreciated gems FIXME
-gem 'protected_attributes'
+#gem 'protected_attributes'
 
 group :development do
   gem 'annotate'

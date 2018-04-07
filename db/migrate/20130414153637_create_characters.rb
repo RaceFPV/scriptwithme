@@ -1,4 +1,4 @@
-class CreateCharacters < ActiveRecord::Migration
+class CreateCharacters < ActiveRecord::Migration[5.1]
   def change
     create_table :characters do |t|
       t.string      :nickname
@@ -6,7 +6,5 @@ class CreateCharacters < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :characters, :scene_id
   end
 end

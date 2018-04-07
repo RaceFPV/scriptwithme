@@ -19,5 +19,5 @@ class Line < ActiveRecord::Base
   validates :kind, presence: true
   default_scope -> {order('created_at')}
 
-  attr_accessible :content, :kind, :nickname
+  #attr_accessible :content, :kind, :nickname
 end

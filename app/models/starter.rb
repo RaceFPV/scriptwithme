@@ -4,5 +4,5 @@ class Starter < ActiveRecord::Base
   validates :content, presence: true
   validates :title, uniqueness: true
   validates :content, uniqueness: true
-  attr_accessible :title, :content
+  #attr_accessible :title, :content
 end

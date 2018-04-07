@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   
   #FIXME: the skip_before_filter shouldnt be required
-  skip_before_filter  :verify_authenticity_token
+  skip_before_action  :verify_authenticity_token
   
   #/start path, seen by new users visiting the site
   def new

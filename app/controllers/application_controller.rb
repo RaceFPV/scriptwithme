@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   respond_to :html, :json
-  before_filter :initialize_user, :except => [:atscene]
-  after_filter :user_activity
+  before_action :initialize_user, :except => [:atscene]
+  after_action :user_activity
   #include the SessionsHelper which manages user signin/signout
   include SessionsHelper
   
