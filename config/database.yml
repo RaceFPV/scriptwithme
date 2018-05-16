@@ -3,6 +3,9 @@ development:
   database: developmentswm
   pool: 5
   timeout: 5000
+  encoding: unicode
+  host: localhost
+  template: template0
   username: <%= ENV["PGUSER"] %>
   password: <%= ENV["PGPASSWORD"] %>
   
@@ -13,15 +16,20 @@ test:
   adapter: postgresql
   database: testswm
   pool: 5
+  encoding: unicode
+  host: localhost
   timeout: 5000
+  template: template0
   username: <%= ENV["PGUSER"] %>
   password: <%= ENV["PGPASSWORD"] %>
   
 production:
   adapter: postgresql
   database: productionswm
-  encoding: unicode
   pool: 5
+  encoding: unicode
+  host: localhost
   timeout: 5000
+  template: template0
   username: <%= ENV["PGUSER"] %>
   password: <%= ENV["PGPASSWORD"] %>
