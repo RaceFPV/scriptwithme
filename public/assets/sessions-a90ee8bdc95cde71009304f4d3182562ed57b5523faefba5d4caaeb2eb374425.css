@@ -1,0 +1,162 @@
+/* line 5, app/assets/stylesheets/sessions.css.scss */
+.ibl {
+  display: inline-block;
+  width: auto;
+}
+
+/* line 10, app/assets/stylesheets/sessions.css.scss */
+.centered-text {
+  text-align: center;
+}
+
+/* line 14, app/assets/stylesheets/sessions.css.scss */
+.introduce {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  margin-bottom: 0;
+  word-wrap: break-word;
+}
+
+/* line 22, app/assets/stylesheets/sessions.css.scss */
+.highlight-bg {
+  background: #FFFFFF;
+  padding: 5px 10px;
+}
+
+/* line 27, app/assets/stylesheets/sessions.css.scss */
+.start-the-scene-form {
+  margin-top: 30px;
+}
+
+/* line 29, app/assets/stylesheets/sessions.css.scss */
+.start-the-scene-form h3 {
+  font-weight: normal;
+  line-height: 30px;
+  margin-bottom: 0;
+  word-wrap: break-word;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* line 36, app/assets/stylesheets/sessions.css.scss */
+.start-the-scene-form #username {
+  width: 170px;
+}
+
+/* line 39, app/assets/stylesheets/sessions.css.scss */
+.start-the-scene-form label {
+  margin-bottom: 0;
+}
+
+/* line 44, app/assets/stylesheets/sessions.css.scss */
+.line-kind-container {
+  width: 20%;
+}
+
+/* line 46, app/assets/stylesheets/sessions.css.scss */
+.line-kind-container select {
+  width: 100%;
+}
+
+/* line 52, app/assets/stylesheets/sessions.css.scss */
+.start-new-scene-container .input-append {
+  margin-bottom: 0;
+}
+
+/* line 57, app/assets/stylesheets/sessions.css.scss */
+.navbar .header-nav > li > .dropdown-menu:before {
+  left: auto;
+  right: 9px;
+}
+
+/* line 61, app/assets/stylesheets/sessions.css.scss */
+.navbar .header-nav > li > .dropdown-menu:after {
+  left: auto;
+  right: 10px;
+}
+
+/* line 68, app/assets/stylesheets/sessions.css.scss */
+.form-horizontal .short-control-group label {
+  width: 80px;
+}
+
+/* line 71, app/assets/stylesheets/sessions.css.scss */
+.form-horizontal .short-control-group input {
+  width: 120px;
+}
+
+/* line 74, app/assets/stylesheets/sessions.css.scss */
+.form-horizontal .short-control-group .controls {
+  margin-left: 100px;
+}
+
+/* line 77, app/assets/stylesheets/sessions.css.scss */
+.form-horizontal .short-control-group .btn-submit {
+  width: 108px;
+}
+
+/* line 84, app/assets/stylesheets/sessions.css.scss */
+.header-nav .dropdown-menu {
+  left: auto;
+  right: 0;
+  padding: 10px;
+}
+
+/* line 89, app/assets/stylesheets/sessions.css.scss */
+.header-nav .dropdown-menu .signin-form .control-label {
+  width: 80px;
+}
+
+/* line 92, app/assets/stylesheets/sessions.css.scss */
+.header-nav .dropdown-menu .signin-form .controls {
+  margin-left: 100px;
+}
+
+/* line 95, app/assets/stylesheets/sessions.css.scss */
+.header-nav .dropdown-menu .signin-form .input-short {
+  width: 120px;
+}
+
+/* line 98, app/assets/stylesheets/sessions.css.scss */
+.header-nav .dropdown-menu .signin-form .btn-submit {
+  width: 108px;
+}
+
+/* line 105, app/assets/stylesheets/sessions.css.scss */
+#signup_modal {
+  width: auto;
+  margin-left: -127px;
+}
+
+/* line 108, app/assets/stylesheets/sessions.css.scss */
+#signup_modal form {
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+/* line 112, app/assets/stylesheets/sessions.css.scss */
+#signup_modal ul {
+  margin-left: 0;
+  margin-bottom: 5px;
+}
+
+/* line 115, app/assets/stylesheets/sessions.css.scss */
+#signup_modal ul li {
+  margin: 0;
+}
+
+/* line 121, app/assets/stylesheets/sessions.css.scss */
+.signout-dropdown .dropdown-menu {
+  top: 80%;
+}
+
+/* line 124, app/assets/stylesheets/sessions.css.scss */
+.signout-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* line 128, app/assets/stylesheets/sessions.css.scss */
+.scene-details p.lead {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

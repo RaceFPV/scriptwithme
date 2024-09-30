@@ -1,0 +1,150 @@
+	
+
+      /* Side Nav */
+     
+#sidebar-wrapper {
+  margin-right: -250px;
+  right: 0;
+  top: 0;
+  width: 252px;
+  background-repeat: repeat;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+#sidechatwrapper.active {
+  right: 250px;
+  width: 252px;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+#sidechat {
+  margin-right: -250px;
+  right: 0;
+  top: 50px;
+  width: 252px;
+  background-repeat: repeat;
+  position: fixed;
+  height: 100%;
+  overflow-y: none;
+  z-index: 1000;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+#sidechat.active {
+  right: 250px;
+  width: 252px;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+#sidechattoggle {
+  top: 90px;
+  right: 0;
+  position: fixed;
+  z-index: 1;
+  
+}
+
+#sidechat_submit {
+  margin-right: -250px;
+ bottom: -12px;
+ right: 0;
+  width: 252px;
+  background-repeat: repeat;
+  position: fixed;
+  overflow-y: none;
+  z-index: 1000;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+#sidechat_submit.active {
+ position: fixed;
+ right: 246;
+ bottom: -12px;
+    -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.leather {
+  background-color: #000;
+  background-image: url(/assets/leather-8dd3839f7bba0529c4dd42dc5da4a42133bf1d13312c1cf166b15bea1830eef0.png);
+  border-left: 2px;
+  border-left-style: double;
+  border-left-color: #222;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 55px;
+  line-height: 55px;
+  font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+.toggle {
+  margin: 5px 5px 0 0;
+}

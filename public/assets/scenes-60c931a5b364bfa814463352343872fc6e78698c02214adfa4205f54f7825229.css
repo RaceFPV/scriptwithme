@@ -1,0 +1,358 @@
+/* line 2, app/assets/stylesheets/scenes.css.scss */
+.content {
+  font-family: "Courier New", Courier, monospace;
+  color: #444;
+  background-color: #FFFAEE;
+  padding: 25px;
+}
+
+/* line 10, app/assets/stylesheets/scenes.css.scss */
+.post {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  background: #FFFFFF;
+  -webkit-box-shadow: 5px 5px 5px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 5px 6px rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+/* line 22, app/assets/stylesheets/scenes.css.scss */
+.post:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border: 1px dashed #ccc;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  box-shadow: 0 0 0 1px #fff;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+/* line 41, app/assets/stylesheets/scenes.css.scss */
+.vline {
+  margin: 1em 10em 5em;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -webkit-box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* line 50, app/assets/stylesheets/scenes.css.scss */
+.scene_container {
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+/* line 53, app/assets/stylesheets/scenes.css.scss */
+.scene_container h1 {
+  text-align: center;
+}
+
+/* line 56, app/assets/stylesheets/scenes.css.scss */
+.scene_container p {
+  font-size: 12pt;
+  margin-bottom: 2em;
+}
+
+/* line 59, app/assets/stylesheets/scenes.css.scss */
+.scene_container p.lead {
+  margin-bottom: 0;
+}
+
+/* line 67, app/assets/stylesheets/scenes.css.scss */
+.ratings a {
+  color: #e5e500;
+}
+
+/* line 70, app/assets/stylesheets/scenes.css.scss */
+#one:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 74, app/assets/stylesheets/scenes.css.scss */
+#one:hover ~ #two {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 78, app/assets/stylesheets/scenes.css.scss */
+#one:hover ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 82, app/assets/stylesheets/scenes.css.scss */
+#one:hover ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 86, app/assets/stylesheets/scenes.css.scss */
+#one:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 90, app/assets/stylesheets/scenes.css.scss */
+#two:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 94, app/assets/stylesheets/scenes.css.scss */
+#two:hover ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 98, app/assets/stylesheets/scenes.css.scss */
+#two:hover ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 102, app/assets/stylesheets/scenes.css.scss */
+#two:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 106, app/assets/stylesheets/scenes.css.scss */
+#three:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 110, app/assets/stylesheets/scenes.css.scss */
+#three:hover ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 114, app/assets/stylesheets/scenes.css.scss */
+#three:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 118, app/assets/stylesheets/scenes.css.scss */
+#four:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 122, app/assets/stylesheets/scenes.css.scss */
+#four:hover ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 126, app/assets/stylesheets/scenes.css.scss */
+#five:hover {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 130, app/assets/stylesheets/scenes.css.scss */
+#one:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 134, app/assets/stylesheets/scenes.css.scss */
+#one:focus ~ #two {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 138, app/assets/stylesheets/scenes.css.scss */
+#one:focus ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 142, app/assets/stylesheets/scenes.css.scss */
+#one:focus ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 146, app/assets/stylesheets/scenes.css.scss */
+#one:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 150, app/assets/stylesheets/scenes.css.scss */
+#two:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 154, app/assets/stylesheets/scenes.css.scss */
+#two:focus ~ #three {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 158, app/assets/stylesheets/scenes.css.scss */
+#two:focus ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 162, app/assets/stylesheets/scenes.css.scss */
+#two:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 166, app/assets/stylesheets/scenes.css.scss */
+#three:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 170, app/assets/stylesheets/scenes.css.scss */
+#three:focus ~ #four {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 174, app/assets/stylesheets/scenes.css.scss */
+#three:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 178, app/assets/stylesheets/scenes.css.scss */
+#four:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 182, app/assets/stylesheets/scenes.css.scss */
+#four:focus ~ #five {
+  color: #000000;
+  text-decoration: none;
+}
+
+/* line 186, app/assets/stylesheets/scenes.css.scss */
+#five:focus {
+  color: #e5e500;
+  text-decoration: none;
+}
+
+/* line 199, app/assets/stylesheets/scenes.css.scss */
+.shadow:before, .effect8:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  top: 0px;
+  bottom: 10px;
+  left: 0px;
+  right: 10px;
+  -moz-border-radius: 100px / 10px;
+  border-radius: 100px / 10px;
+}
+
+/* line 214, app/assets/stylesheets/scenes.css.scss */
+.shadow:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  -moz-transform: skew(8deg) rotate(3deg);
+  -ms-transform: skew(8deg) rotate(3deg);
+  -o-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
+
+/* line 225, app/assets/stylesheets/scenes.css.scss */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* line 232, app/assets/stylesheets/scenes.css.scss */
+.sayline .character {
+  text-transform: uppercase;
+  display: block;
+  font-size: 13pt;
+  line-height: 1em;
+}
+
+/* line 239, app/assets/stylesheets/scenes.css.scss */
+.sayline .line {
+  display: inline-block;
+  max-width: 45%;
+  margin-left: 30%;
+}
+
+/* line 246, app/assets/stylesheets/scenes.css.scss */
+.narrativeline {
+  margin-left: -10px;
+}
+
+/* line 248, app/assets/stylesheets/scenes.css.scss */
+.narrativeline .character {
+  color: #dadada;
+  display: inline-block;
+  text-shadow: none;
+}
+
+/* line 254, app/assets/stylesheets/scenes.css.scss */
+.narrativeline .line {
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-block;
+}
+
+/* line 261, app/assets/stylesheets/scenes.css.scss */
+#say-your-line {
+  display: block;
+  clear: both;
+  margin-top: 35px;
+}
+
+/* line 265, app/assets/stylesheets/scenes.css.scss */
+#say-your-line .input-append {
+  margin-left: 2%;
+}
+
+/* line 273, app/assets/stylesheets/scenes.css.scss */
+.input-panel {
+  border: solid 1px;
+  border-color: grey;
+  border-radius: 20px;
+  padding: 20px 0px 20px 0px;
+  background-color: #ececec;
+}
+
+/* line 283, app/assets/stylesheets/scenes.css.scss */
+.ibl {
+  display: inline-block;
+  width: auto;
+}
+
+/* line 289, app/assets/stylesheets/scenes.css.scss */
+.hide {
+  display: none;
+}
+
+/* line 293, app/assets/stylesheets/scenes.css.scss */
+.centered-text {
+  text-align: center;
+}
+
+/* line 297, app/assets/stylesheets/scenes.css.scss */
+ul.no-list-style, li.no-list-style {
+  list-style: none;
+}
