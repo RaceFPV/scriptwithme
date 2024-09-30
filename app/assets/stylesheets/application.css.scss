@@ -2,12 +2,6 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
  *= require sessions
  *= require scenes
@@ -21,5 +15,19 @@
  *= require connect
  */
 
+// Bootstrap component imports
 @import "bootstrap-sprockets";
-@import "bootstrap";
+
+// Import individual Bootstrap components from bootstrap-sass in the correct order
+@import "bootstrap/variables";        // Required for all components
+@import "bootstrap/mixins";           // Required for all components
+@import "bootstrap/forms";            // Required for the form-inline mixin
+@import "bootstrap/scaffolding";      // General layout (e.g., container)
+@import "bootstrap/grid";             // Grid system
+@import "bootstrap/buttons";          // Buttons
+@import "bootstrap/navbar";           // Navbar styles (after forms for the form-inline mixin)
+@import "bootstrap/alerts";           // Alerts
+@import "bootstrap/tooltip";          // Tooltips and Popovers are both covered by this
+
+// Do NOT import the carousel component to avoid the XSS vulnerability
+// @import "bootstrap/carousel";
