@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap/transition
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require bootstrap/modal
+//= require bootstrap/tooltip
+//= require bootstrap/collapse
 //= require private_pub
 //= require login
 //= require bootstrap-select
