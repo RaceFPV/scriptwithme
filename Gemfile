@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '3.3.5'
 
 group :production do
   gem 'pg' # Heroku database
@@ -7,7 +7,7 @@ group :production do
 end
 
 # Default Rails gems
-gem 'rails', "5.1.6"
+gem 'rails', "7.2.1"
 gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails' # Use CoffeeScript for .js.coffee assets and views
 gem 'jquery-rails' # Use jquery as the JavaScript library
@@ -16,13 +16,12 @@ gem 'sass-rails'# Use SCSS for stylesheets
 gem 'bootstrap-sass' # Twitter Bootstrap front-end framework
 gem 'bcrypt' # To use ActiveModel has_secure_password
 
-
 # Non-default gems
 gem 'faye' #allow sending messages back to users
 gem 'newrelic_rpm' #3rd party application for monitoring and status info
 gem 'private_pub' #filter faye messages for only some recipients
 gem 'ruby-progressbar'
-gem 'state_machine' #may not be used anymore
+gem 'aasm' 
 gem 'omniauth-identity' #allow logging in locally
 gem 'omniauth-facebook' #allow logins using facebook
 gem 'omniauth-twitter' #allow logins using twitter
@@ -30,6 +29,7 @@ gem 'thin' #hosts faye
 gem 'jquery-datatables-rails' #for easy pagination and searching in admin page
 gem 'jquery-ui-rails' #for easy pagination and searching in admin page
 gem 'responders'
+gem 'ostruct'
 
 #depreciated gems FIXME
 #gem 'protected_attributes'

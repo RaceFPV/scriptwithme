@@ -1,4 +1,5 @@
 class Scene < ActiveRecord::Base
+  include AASM
   has_many  :lines, dependent: :destroy
   has_many  :characters, dependent: :destroy
   serialize :users #allows saving user_id's with titles to scenes letting users save the scene
@@ -11,13 +12,27 @@ class Scene < ActiveRecord::Base
   default_scope -> {order('created_at DESC')} #order scenes by created_at time
   
 #-------- Used to keep track of a scenes state using state_machine gem ------
-  state_machine :initial => :waiting do
+##### FIX ME
+  # state_machine :initial => :waiting do
+  #   event :start do
+  #     transition :waiting => :operating
+  #   end
+
+  #   event :close do
+  #     transition :operating => :closed
+  #   end
+  # end
+  aasm do
+    state :waiting, initial: true
+    state :operating
+    state :closed
+
     event :start do
-      transition :waiting => :operating
+      transitions from: :waiting, to: :operating
     end
 
     event :close do
-      transition :operating => :closed
+      transitions from: :operating, to: :closed
     end
   end
 #-------- End of scene state code -----------
