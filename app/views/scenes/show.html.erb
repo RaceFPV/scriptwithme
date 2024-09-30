@@ -13,15 +13,15 @@
 
 <!-- scene is live alert -->
 <header class="navbar-fixed-top" style="width: 100%;margin-top:50px;" align="center">
-	<% if @scene.state?(:operating) or @scene.state?(:waiting)%>
-		<div id="viewercount">
-			<% if @viewercount %>
-				<span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> live viewers</span>
-			<% else %>
-				<span class="badge" style="float: right;" id="viewercounter">0 live viewers</span>
-			<% end %>
-		</div>
-		<% end %>
+  <% if @scene.operating? || @scene.waiting? %>
+    <div id="viewercount">
+      <% if @viewercount %>
+        <span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> live viewers</span>
+      <% else %>
+        <span class="badge" style="float: right;" id="viewercounter">0 live viewers</span>
+      <% end %>
+    </div>
+  <% end %>
 </header>
 
 <!-- Partner disconnected alert -->

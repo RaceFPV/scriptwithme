@@ -58,10 +58,10 @@
       @partner = User.find(@scene.characters.first.user_id)
     end
     #start the scene if it hasnt started already
-    if @scene.state?(:waiting)
+    if @scene.waiting?
       @scene.start
     end
-  if @scene.state?(:closed) == false
+  if @scene.closed? == false
   #notify the partner that the user left the scene via leave.js.erb
     render 'scenes/messages/leave'
   end
@@ -76,7 +76,7 @@
     #give the current user id a variable
     @me ||= current_character_hash[:user_id]
     #make sure the scene starts when the first line is dropped
-    if @scene.state?(:waiting)
+    if @scene.waiting?
       @scene.start
     end
      #get previous lines nickname
@@ -173,11 +173,11 @@
     elsif @scene.characters.second.user_id == current_character_hash[:user_id]
       @partner = User.find(@scene.characters.first.user_id)
     end
-    if @scene.state?(:closed)
+    if @scene.closed?
       return  render :nothing => true
     end
     #close the scene by using state_machine gem
-    if @scene.state?(:waiting)
+    if @scene.waiting?
       @scene.start
     end
         #increase our scene participation count by one

@@ -26,7 +26,7 @@ class ScenesController < ApplicationController
       return redirect_to root_path, :flash => {:error => "Error joining scene"}
     end
     #if the scene is closed, redirect the user to the saved scene path
-    if @scene.state?(:closed)
+    if @scene.closed?
       return redirect_to savedscene_path(@scene)
     end
     #if the scene has less than two characters, redirect the user back to the waiting path

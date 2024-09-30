@@ -7,22 +7,23 @@
 
 <!-- scene is live alert -->
 <header class="navbar-fixed-top" style="width: 100%;margin-top:50px;" align="center">
-	<% if @scene.state?(:operating) %>
-	<div class="alert alert-info" align="center" style="width: 100%;padding-left:10%;display: inline-block;" id="scenelive">
-		This scene is live right now!
-		<div id="viewercount" style="float: right;">
-			<span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> viewers</span>
-		</div>
-	</div>
-	<% else %>
-	<div class="alert alert-danger" align="center" style="width: 100%;display: inline-block;">
-		This scene has ended
-	</div>
-	<% end %>
-	<div class="alert alert-danger" align="center" style="width: 100%;display: none;" id="sceneliveend">
-		This scene has ended
-	</div>
+  <% if @scene.operating? %>
+    <div class="alert alert-info" align="center" style="width: 100%;padding-left:10%;display: inline-block;" id="scenelive">
+      This scene is live right now!
+      <div id="viewercount" style="float: right;">
+        <span class="badge" style="float: right;" id="viewercounter"><%= @viewercount %> viewers</span>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-danger" align="center" style="width: 100%;display: inline-block;">
+      This scene has ended
+    </div>
+  <% end %>
+  <div class="alert alert-danger" align="center" style="width: 100%;display: none;" id="sceneliveend">
+    This scene has ended
+  </div>
 </header>
+
 <!-- end of scene is live alert -->
 
 <!-- Main show page content   -- user generated lines -->

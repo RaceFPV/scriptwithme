@@ -33,8 +33,8 @@ class ConnectController < ApplicationController
     scenes = Scene.my_current_scenes(current_character_hash[:user_id]).first rescue nil
     @me = current_character_hash
     #if the user has been selected, toss them a redirect to the newly created scene
-    if scenes != nil and scenes.state?(:waiting) and scenes.created_at > 10.seconds.ago
-      return render :json => {:scene_url => scene_path(:id => scenes.id)}
+    if scenes.present? && scenes.waiting? && scenes.created_at > 10.seconds.ago
+      return render json: { scene_url: scene_path(id: scenes.id) }
     end
       # If user is not selected, then search for a valid partner
       partner = Queueconnect.search(session[:user_id])

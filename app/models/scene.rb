@@ -39,12 +39,12 @@ class Scene < ActiveRecord::Base
 
 #find the first 5 scenes with the highest number of likes
   def self.likes?
-    where("(scenes.state = ?)", "closed").order('scenes.likes DESC').limit(5)
+    where("(scenes.aasm_state = ?)", "closed").order('scenes.likes DESC').limit(5)
   end
   
 #find the first 5 scenes that are currently operating and have been updated in the last 5 minutes
   def self.watchable?
-    watchable = where("state = ? AND created_at > ?", "operating", 45.minutes.ago) rescue nil
+    watchable = where("aasm_state = ? AND created_at > ?", "operating", 45.minutes.ago) rescue nil
     result = []
     if watchable == nil
       return nil
@@ -64,7 +64,7 @@ class Scene < ActiveRecord::Base
 
   def self.my_current_scenes(user_id)
     Scene.joins("INNER JOIN characters ON characters.scene_id = scenes.id").
-    where("(scenes.state = ?) AND characters.user_id = ? AND scenes.created_at > ?", "waiting", user_id, 10.seconds.ago)
+    where("(scenes.aasm_state = ?) AND characters.user_id = ? AND scenes.created_at > ?", "waiting", user_id, 10.seconds.ago)
   end
 
 #check if a user has a character by providing the user_id -- NO LONGER USED????
@@ -77,9 +77,9 @@ class Scene < ActiveRecord::Base
   
   #delete old scenes that have been updated older than one day, have no users saved, and are closed
   def delete_old_scenes
-    delete = Scene.where('updated_at <= ? AND users IS ? AND state = ?', 1.days.ago, nil, "closed")
-    delete.each do |x|
-      x.destroy
-    end
+    scenes_to_delete = Scene.where('updated_at <= ?', 1.day.ago)
+                            .where(users: nil, aasm_state: 'closed')
+  
+    scenes_to_delete.each(&:destroy)
   end
 end
